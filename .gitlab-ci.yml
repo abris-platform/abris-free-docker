@@ -1,0 +1,25 @@
+stages:
+  - Build
+  - Testing
+
+build:
+  stage: Build
+  when: manually
+  script:
+    - docker pull abrisplatform/abris-free
+    - docker run -d -it --name abris-free -p 8030:80 -p 45432:5432 abrisplatform/abris-free
+    - sleep 30s # Ожидание воскрешения веб-морды. Обеспечение работоспособности тестов.
+  tags:
+    - shell
+
+testing:
+  stage: Testing
+  when: on_success
+  image: 
+    name: testcafe/testcafe
+    entrypoint: ["/bin/sh", "-c"]
+  script:
+    - cd f-tests
+    - env TEST_PAGE_ADDRESS=http://abris.site:8030 /opt/testcafe/docker/testcafe-docker.sh chromium -S -q -s /tmp/host-server-docs/abris-free tests 
+  except: 
+    - tags

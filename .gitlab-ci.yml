@@ -13,7 +13,7 @@ build:
     - sleep 30s # Ожидание воскрешения веб-морды. Обеспечение работоспособности тестов.
   tags:
     - shell
-allow_failure: false
+  allow_failure: false
 
 testing:
   stage: Testing

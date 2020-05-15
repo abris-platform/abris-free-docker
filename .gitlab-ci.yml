@@ -6,8 +6,8 @@ build:
   stage: Build
   when: manual
   script:
-    - docker pull abrisplatform/abris-free
-    - docker run -d -it --name abris-free -p 8030:80 -p 45432:5432 abrisplatform/abris-free
+    - docker pull abrissite/abris-free
+    - docker run -d -it --name abris-free -p 8030:80 -p 45432:5432 abrissite/abris-free
     - sleep 30s # Ожидание воскрешения веб-морды. Обеспечение работоспособности тестов.
   tags:
     - shell

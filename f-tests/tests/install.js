@@ -14,10 +14,6 @@ test('Abris install', async t => {
 	var nameTest = "abris_install";
 	await t
         .resizeWindow(800, 600)
-        // .click(Selector('div.abris-property.readwrite').find('input[data-bind="value: $data.serverAddress"'))
-        // .pressKey('ctrl+a')
-        // .typeText(Selector('div.abris-property.readwrite').find('input[data-bind="value: $data.serverAddress"]'),
-        //     'localhost')
         // .click(Selector('div.abris-property.readwrite').find('input[data-bind="value: $data.serverPort"]'))
         // .pressKey('ctrl+a')
         // .typeText(Selector('div.abris-property.readwrite').find('input[data-bind="value: $data.serverPort"]'),

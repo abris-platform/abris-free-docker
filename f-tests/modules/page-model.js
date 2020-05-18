@@ -39,8 +39,6 @@ export class Page {
         await t
             .setTestSpeed(0.9)
             .click(this.loginMenu)
-            // .expect(Selector('div.modal-dialog').visible)
-            //     .ok()
             .wait(750)
             .typeText(this.loginInput, 'postgres')            
             .typeText(this.passwordInput, '123456')
@@ -53,11 +51,4 @@ export class Page {
             .click(this.loginMenu)
             .click(this.signOutButton);
     }
-
-    // async reload(urlTestPage) {
-    //     await t
-    //         .navigateTo(url.home)
-    //         .navigateTo(urlTestPage)
-    //         .eval(() => location.reload(true));
-    // }
 }

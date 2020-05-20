@@ -69,11 +69,11 @@ test('Create schema', async t => {
         .resizeWindow(1366, 768)
         .navigateTo(url.schema)
         .click(Selector('.dt-buttons').find('.btn-default.btn-blue'))
-        .typeText(Selector('.abris-property-schema_name').find('input'), 
+        .typeText(Selector('div.abris-property-schema_name').find('input'), 
             'test_schema')
-        .typeText(Selector('.abris-property-title').find('input'), 
+        .typeText(Selector('div.abris-property-title').find('input'), 
             'Test created schema')
-        .click(Selector('.abris-detail-schema abris-actions').find('.btn-default.btn-green'))
+        .click(Selector('div.abris-detail-schema div.col-lg-12.actions').find('button.btn.btn-default.btn-green').withText('Создать'))
         .expect(Selector('div.alert.in.fade.alert-success'))
             .ok('Record not created.')
         // .takeScreenshot("/" + nameTest + "_1.png");
@@ -85,7 +85,7 @@ test('Create schema', async t => {
         .expect(Selector('div.table-responsive').find('tbody').find('tr').withText('test_schema').exists)
             .ok('Record not displayed.')
         .click(Selector('div.table-responsive').find('tbody').find('tr').withText('test_schema'))
-        .hover(Selector('div.abris-detail-schema').find('div.col-lg-12.actions').nth(1))
+        // .hover(Selector('div.abris-detail-schema').find('div.col-lg-12.actions').nth(1))
         // .takeScreenshot("/" + nameTest + "_2.png");
 });
 

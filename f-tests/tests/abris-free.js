@@ -89,6 +89,7 @@ test('Create schema', async t => {
         // .takeScreenshot("/" + nameTest + "_2.png");
 });
 
+// Нужны скрины.
 test('Create project table', async t => {
     var nameTest = "project_table";
     t.expect(page.login());
@@ -114,8 +115,8 @@ test('Create project table', async t => {
         await t.click(Selector('.panel-heading-caption.left').withText('Properties'))
     }
     await t
-    .click(Selector('div.abris-detail-schema abris-panel.relation div.panel.panel-default div.abris-detail-entity div.panel.panel-default').find('div.dt-buttons .btn-default.btn-blue'))
-    .typeText(Selector('div.abris-detail-property .abris-property-column_name').find('input'),
+        .click(Selector('div.abris-detail-schema abris-panel.relation div.panel.panel-default div.abris-detail-entity div.panel.panel-default').find('div.dt-buttons .btn-default.btn-blue'))
+        .typeText(Selector('div.abris-detail-property .abris-property-column_name').find('input'),
             'name')
         .typeText(Selector('div.abris-detail-property .abris-property-title').find('input'),
             'Name')
@@ -127,5 +128,77 @@ test('Create project table', async t => {
         .typeText(Selector('.select2-search__field'), 
             'caption')
         .click(Selector('.select2-results__option').withText('caption Headline'))        
+        .click(Selector('div.abris-detail-schema abris-panel.relation div.panel.panel-default div.abris-detail-entity div.panel.panel-default div.abris-detail-property div.col-lg-12.actions').find('button.btn.btn-default.btn-green').withText('Создать'));
+});
+
+// Нужны скрины
+test('Create employee table', async t => {
+    var nameTest = "employee_table";
+    t.expect(page.login());
+    await t
+        .resizeWindow(1366, 768)
+        .click(page.generalMenu)
+        .click(Selector('ul#side-menu.nav li').withText('Configuration'))
+        .click(Selector('ul.nav.nav-second-level li').withText('Schemas'))
+        .click(Selector('div.table-responsive tbody').find('tr#test_schema'));
+    if (await Selector('div.panel-heading.clearfix.collapsed').withText('Entities').exists) {
+        await t.click(Selector('.panel-heading-caption.left').withText('Entities'))
+    }
+    await t
+        .click(Selector('div.abris-detail-schema div.panel.panel-default').find('div.dt-buttons .btn-default.btn-blue'))
+        .typeText(Selector('div.abris-detail-entity .abris-property-table_name').find('input'), 
+            'employee')
+        .typeText(Selector('div.abris-detail-entity .abris-property-title').find('input'),
+            'Employees')
+        // .click(Selector('div.panel.panel-default div.abris-detail-entity abris-actions div.row.er-actions-row div.col-lg-12.actions').find('button.btn.btn-default.btn-green'))
+        .click(Selector('div.abris-detail-schema abris-panel.relation div.panel.panel-default div.abris-detail-entity div.col-lg-12.actions').find('button.btn.btn-default.btn-green').withText('Создать')) // Временное решение, не видит кнопку.
+        .click(Selector('div.panel.panel-default div.table-responsive tbody').find('tr').nth(0));
+    if (await Selector('div.panel-heading.clearfix.collapsed').withText('Properties').exists) {
+        await t.click(Selector('.panel-heading-caption.left').withText('Properties'))
+    }
+    await t
+        .click(Selector('div.abris-detail-schema abris-panel.relation div.panel.panel-default div.abris-detail-entity div.panel.panel-default').find('div.dt-buttons .btn-default.btn-blue'))
+        .typeText(Selector('div.abris-detail-property .abris-property-column_name').find('input'),
+            'name')
+        .typeText(Selector('div.abris-detail-property .abris-property-title').find('input'),
+            'Name')
+        // .click(Selector('div.abris-detail-property .abris-property-data_type').find('.select2-selection.select2-selection--single'))
+        // .typeText(Selector('.select2-search__field'), 
+        //     'text')
+        // .click(Selector('.select2-results__option').withText('text'))
+        // .click(Selector('div.abris-detail-property .abris-property-type').find('.select2-selection.select2-selection--single'))
+        // .typeText(Selector('.select2-search__field'), 
+        //     'caption')
+        // .click(Selector('.select2-results__option').withText('caption Headline'))        
+        .click(Selector('div.abris-detail-schema abris-panel.relation div.panel.panel-default div.abris-detail-entity div.panel.panel-default div.abris-detail-property div.col-lg-12.actions').find('button.btn.btn-default.btn-green').withText('Создать'));
+    await t
+        .click(Selector('div.abris-detail-schema abris-panel.relation div.panel.panel-default div.abris-detail-entity div.panel.panel-default').find('div.dt-buttons .btn-default.btn-blue'))
+        .typeText(Selector('div.abris-detail-property .abris-property-column_name').find('input'),
+            'work_from')
+        .typeText(Selector('div.abris-detail-property .abris-property-title').find('input'),
+            'Work From')
+        .click(Selector('div.abris-detail-property .abris-property-data_type').find('.select2-selection.select2-selection--single'))
+        .typeText(Selector('.select2-search__field'), 
+            'time with time zone')
+        .click(Selector('.select2-results__option').withText('time with time zone'))
+        .click(Selector('div.abris-detail-property .abris-property-type').find('.select2-selection.select2-selection--single'))
+        .typeText(Selector('.select2-search__field'), 
+            'time')
+        .click(Selector('.select2-results__option').withText('time Time'))        
+        .click(Selector('div.abris-detail-schema abris-panel.relation div.panel.panel-default div.abris-detail-entity div.panel.panel-default div.abris-detail-property div.col-lg-12.actions').find('button.btn.btn-default.btn-green').withText('Создать'));
+    await t
+        .click(Selector('div.abris-detail-schema abris-panel.relation div.panel.panel-default div.abris-detail-entity div.panel.panel-default').find('div.dt-buttons .btn-default.btn-blue'))
+        .typeText(Selector('div.abris-detail-property .abris-property-column_name').find('input'),
+            'work_to')
+        .typeText(Selector('div.abris-detail-property .abris-property-title').find('input'),
+            'Work To')
+        .click(Selector('div.abris-detail-property .abris-property-data_type').find('.select2-selection.select2-selection--single'))
+        .typeText(Selector('.select2-search__field'), 
+            'time with time zone')
+        .click(Selector('.select2-results__option').withText('time with time zone'))
+        .click(Selector('div.abris-detail-property .abris-property-type').find('.select2-selection.select2-selection--single'))
+        .typeText(Selector('.select2-search__field'), 
+            'time')
+        .click(Selector('.select2-results__option').withText('time Time'))        
         .click(Selector('div.abris-detail-schema abris-panel.relation div.panel.panel-default div.abris-detail-entity div.panel.panel-default div.abris-detail-property div.col-lg-12.actions').find('button.btn.btn-default.btn-green').withText('Создать'));
 });

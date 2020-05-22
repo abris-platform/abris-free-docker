@@ -233,3 +233,119 @@ test('Create employee table', async t => {
         .click(Selector('.select2-results__option').withText('time Time'))        
         .click(Selector('div.abris-detail-schema abris-panel.relation div.panel.panel-default div.abris-detail-entity div.panel.panel-default div.abris-detail-property div.col-lg-12.actions').find('button.btn.btn-default.btn-green').withText('Create'));
 });
+
+test('Employee menu item', async t => {
+    var nameTest = "employee_menu_item";
+    t.expect(page.login());
+    await t
+        .resizeWindow(1366, 768)
+        .navigateTo(url.home + '/#list/menu_item')
+        .click(Selector('.dt-buttons').find('.btn-default.btn-blue'))
+        .typeText(Selector('.abris-property-name').find('input'), 
+            'test_employee')
+        .typeText(Selector('.abris-property-title').find('input'), 
+            'Test Employee')
+        .click(Selector('div.abris-detail-menu_item .abris-property-projection').find('.select2-selection.select2-selection--single'))
+        .typeText(Selector('.select2-search__field'), 
+            'employee')
+        .click(Selector('.select2-results__option').withText('public standard public schema employee Employees employee_key'))
+        .click(Selector('div.abris-detail-schema div.col-lg-12.actions').find('button.btn.btn-default.btn-green').withText('Create'))
+        .expect(Selector('div.alert.in.fade.alert-success'))
+            .ok('Record not created.')
+        // .takeScreenshot("/" + nameTest + "_1.png");
+    await t
+        .navigateTo(url.home)
+        .eval(() => location.reload(true));
+    await t
+        .click(page.generalMenu)
+        .click(Selector('ul#side-menu.nav li').withText('Test Employee'))
+        .expect(Selector('div.table-responsive').exists)
+            .ok('Employee table not displayed.')
+        // .takeScreenshot("/" + nameTest + "_2.png");
+});
+
+test('Create task table', async t => {
+    var nameTest = "task_table";
+    t.expect(page.login());
+    await t
+        .resizeWindow(1366, 768)
+        .click(page.generalMenu)
+        .click(Selector('ul#side-menu.nav li').withText('Configuration'))
+        .click(Selector('ul.nav.nav-second-level li').withText('Schemas'))
+        .click(Selector('div.table-responsive tbody').find('tr#test_schema'));
+    if (await Selector('div.panel-heading.clearfix.collapsed').withText('Entities').exists) {
+        await t.click(Selector('.panel-heading-caption.left').withText('Entities'))
+    }
+    await t
+        .click(Selector('div.abris-detail-schema div.panel.panel-default').find('div.dt-buttons .btn-default.btn-blue'))
+        .typeText(Selector('div.abris-detail-entity .abris-property-table_name').find('input'), 
+            'task')
+        .typeText(Selector('div.abris-detail-entity .abris-property-title').find('input'),
+            'Tasks')
+        // .click(Selector('div.panel.panel-default div.abris-detail-entity abris-actions div.row.er-actions-row div.col-lg-12.actions').find('button.btn.btn-default.btn-green'))
+        .click(Selector('div.abris-detail-schema abris-panel.relation div.panel.panel-default div.abris-detail-entity div.col-lg-12.actions').find('button.btn.btn-default.btn-green').withText('Create')) // Временное решение, не видит кнопку.
+        .click(Selector('div.panel.panel-default div.table-responsive tbody').find('tr').nth(0));
+    if (await Selector('div.panel-heading.clearfix.collapsed').withText('Properties').exists) {
+        await t.click(Selector('.panel-heading-caption.left').withText('Properties'))
+    }
+    await t
+        .click(Selector('div.abris-detail-schema abris-panel.relation div.panel.panel-default div.abris-detail-entity div.panel.panel-default').find('div.dt-buttons .btn-default.btn-blue'))
+        .typeText(Selector('div.abris-detail-property .abris-property-column_name').find('input'),
+            'title')
+        .typeText(Selector('div.abris-detail-property .abris-property-title').find('input'),
+            'Title')
+        .click(Selector('div.abris-detail-property .abris-property-data_type').find('.select2-selection.select2-selection--single'))
+        .typeText(Selector('.select2-search__field'), 
+            'text')
+        .click(Selector('.select2-results__option').withText('text'))
+        .click(Selector('div.abris-detail-property .abris-property-type').find('.select2-selection.select2-selection--single'))
+        .typeText(Selector('.select2-search__field'), 
+            'caption')
+        .click(Selector('.select2-results__option').withText('caption Headline'))        
+        .click(Selector('div.abris-detail-schema abris-panel.relation div.panel.panel-default div.abris-detail-entity div.panel.panel-default div.abris-detail-property div.col-lg-12.actions').find('button.btn.btn-default.btn-green').withText('Create'));
+    await t
+        .click(Selector('div.abris-detail-schema abris-panel.relation div.panel.panel-default div.abris-detail-entity div.panel.panel-default').find('div.dt-buttons .btn-default.btn-blue'))
+        .typeText(Selector('div.abris-detail-property .abris-property-column_name').find('input'),
+            'due_time')
+        .typeText(Selector('div.abris-detail-property .abris-property-title').find('input'),
+            'Due Time')
+        .click(Selector('div.abris-detail-property .abris-property-data_type').find('.select2-selection.select2-selection--single'))
+        .typeText(Selector('.select2-search__field'), 
+            'timestamp with time zone')
+        .click(Selector('.select2-results__option').withText('timestamp with time zone'))
+        .click(Selector('div.abris-detail-property .abris-property-type').find('.select2-selection.select2-selection--single'))
+        .typeText(Selector('.select2-search__field'), 
+            'datetime')
+        .click(Selector('.select2-results__option').withText('datetime Date and time'))        
+        .click(Selector('div.abris-detail-schema abris-panel.relation div.panel.panel-default div.abris-detail-entity div.panel.panel-default div.abris-detail-property div.col-lg-12.actions').find('button.btn.btn-default.btn-green').withText('Create'));
+    await t
+        .click(Selector('div.abris-detail-schema abris-panel.relation div.panel.panel-default div.abris-detail-entity div.panel.panel-default').find('div.dt-buttons .btn-default.btn-blue'))
+        .typeText(Selector('div.abris-detail-property .abris-property-column_name').find('input'),
+            'progress')
+        .typeText(Selector('div.abris-detail-property .abris-property-title').find('input'),
+            'Progress')
+        .click(Selector('div.abris-detail-property .abris-property-data_type').find('.select2-selection.select2-selection--single'))
+        .typeText(Selector('.select2-search__field'), 
+            'integer')
+        .click(Selector('.select2-results__option').withText('integer'))
+        .click(Selector('div.abris-detail-property .abris-property-type').find('.select2-selection.select2-selection--single'))
+        .typeText(Selector('.select2-search__field'), 
+            'progress')
+        .click(Selector('.select2-results__option').withText('progress Horizontal indicator'))        
+        .click(Selector('div.abris-detail-schema abris-panel.relation div.panel.panel-default div.abris-detail-entity div.panel.panel-default div.abris-detail-property div.col-lg-12.actions').find('button.btn.btn-default.btn-green').withText('Create'));
+    await t
+        .click(Selector('div.abris-detail-schema abris-panel.relation div.panel.panel-default div.abris-detail-entity div.panel.panel-default').find('div.dt-buttons .btn-default.btn-blue'))
+        .typeText(Selector('div.abris-detail-property .abris-property-column_name').find('input'),
+            'description')
+        .typeText(Selector('div.abris-detail-property .abris-property-title').find('input'),
+            'Description')
+        .click(Selector('div.abris-detail-property .abris-property-data_type').find('.select2-selection.select2-selection--single'))
+        .typeText(Selector('.select2-search__field'), 
+            'text')
+        .click(Selector('.select2-results__option').withText('text'))
+        .click(Selector('div.abris-detail-property .abris-property-type').find('.select2-selection.select2-selection--single'))
+        .typeText(Selector('.select2-search__field'), 
+            'text')
+        .click(Selector('.select2-results__option').withText('text Rich text'))        
+        .click(Selector('div.abris-detail-schema abris-panel.relation div.panel.panel-default div.abris-detail-entity div.panel.panel-default div.abris-detail-property div.col-lg-12.actions').find('button.btn.btn-default.btn-green').withText('Create'));
+});

@@ -19,7 +19,7 @@ repack:
   stage: Build
   when: manual
   script: 
-    - cd /tmp/abris-free && rm -R .
+    - cd /tmp/abris-free && rm -Rf ./
     - "curl --location --header \"PRIVATE-TOKEN: ${CI_API_TOKEN}\" \"https://abris.site:8091/api/v4/projects/5/jobs/artifacts/master/download?job=build-free\""
     - unzip ./abris-ui.zip
     - "curl --location --header \"PRIVATE-TOKEN: ${CI_API_TOKEN}\" \"https://abris.site:8091/api/v4/projects/69/jobs/artifacts/master/download?job=build\""

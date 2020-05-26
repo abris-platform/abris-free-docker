@@ -19,7 +19,7 @@ repack:
   stage: Build
   when: manual
   script: 
-    - chmod 777 ./repack.sh
+    - chmod +x ./repack.sh
     - ./repack.sh
   tags:
     - shell

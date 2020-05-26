@@ -15,6 +15,21 @@ build:
     - shell
   allow_failure: false
 
+repack:
+  stage: Build
+  when: manual
+  script: 
+    - cd /tmp/abris-free && rm -R ./
+    - "curl --location --header \"PRIVATE-TOKEN: ${CI_API_TOKEN}\" \"https://abris.site:8091/api/v4/projects/5/jobs/artifacts/master/download?job=build-free\""
+    - unzip ./abris-ui.zip
+    - "curl --location --header \"PRIVATE-TOKEN: ${CI_API_TOKEN}\" \"https://abris.site:8091/api/v4/projects/69/jobs/artifacts/master/download?job=build\""
+    - cd ./dist/ && unzip ./abris-server-base.zip
+    - cd ../ && zip -r abris-free.zip ./dist/*
+    - mv abris-free.zip /var/www/comsite/data/www/abrisplatform.com/downloads/
+  tags:
+    - shell
+  allow_failure: false
+
 testing:
   stage: Testing
   when: on_success
@@ -26,3 +41,4 @@ testing:
     - env TEST_PAGE_ADDRESS=http://abris.site:8030 /opt/testcafe/docker/testcafe-docker.sh chromium -S -q -s /tmp/host-server-docs/abris-free tests 
   except: 
     - tags
+

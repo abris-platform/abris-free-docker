@@ -17,13 +17,16 @@ build:
 
 repack:
   stage: Build
-  when: manual
+  # trigger: 
+  #   - abris-lab/abris-free-server
+  #   - abris-lab/abris-ui
+  when: on_success
   script: 
     - chmod +x ./repack.sh
     - ./repack.sh
   tags:
     - shell
-  allow_failure: false
+  # allow_failure: false # Отключение обязательности репака
 
 testing:
   stage: Testing

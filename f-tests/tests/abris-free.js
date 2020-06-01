@@ -111,7 +111,8 @@ test('Create project table', async t => {
             'Project')
         // .click(Selector('div.panel.panel-default div.abris-detail-entity abris-actions div.row.er-actions-row div.col-lg-12.actions').find('button.btn.btn-default.btn-green'))
         .click(Selector('div.abris-detail-schema abris-panel.relation div.panel.panel-default div.abris-detail-entity div.col-lg-12.actions').find('button.btn.btn-default.btn-green').withText('Create')) // Временное решение, не видит кнопку.
-        .click(Selector('div.panel.panel-default div.table-responsive tbody').find('tr').nth(0));
+        // .click(Selector('div.panel.panel-default div.table-responsive tbody').find('tr').nth(0));
+        .click(Selector('div.panel.panel-default div.table-responsive tbody').find('tr').withText('project'));
     if (await Selector('div.panel-heading.clearfix.collapsed').withText('Properties').exists) {
         await t.click(Selector('.panel-heading-caption.left').withText('Properties'))
     }
@@ -183,7 +184,8 @@ test('Create employee table', async t => {
             'Employees')
         // .click(Selector('div.panel.panel-default div.abris-detail-entity abris-actions div.row.er-actions-row div.col-lg-12.actions').find('button.btn.btn-default.btn-green'))
         .click(Selector('div.abris-detail-schema abris-panel.relation div.panel.panel-default div.abris-detail-entity div.col-lg-12.actions').find('button.btn.btn-default.btn-green').withText('Create')) // Временное решение, не видит кнопку.
-        .click(Selector('div.panel.panel-default div.table-responsive tbody').find('tr').nth(0));
+        // .click(Selector('div.panel.panel-default div.table-responsive tbody').find('tr').nth(0));
+        .click(Selector('div.panel.panel-default div.table-responsive tbody').find('tr').withText('employee'));
     if (await Selector('div.panel-heading.clearfix.collapsed').withText('Properties').exists) {
         await t.click(Selector('.panel-heading-caption.left').withText('Properties'))
     }
@@ -284,7 +286,7 @@ test('Create task table', async t => {
             'Tasks')
         // .click(Selector('div.panel.panel-default div.abris-detail-entity abris-actions div.row.er-actions-row div.col-lg-12.actions').find('button.btn.btn-default.btn-green'))
         .click(Selector('div.abris-detail-schema abris-panel.relation div.panel.panel-default div.abris-detail-entity div.col-lg-12.actions').find('button.btn.btn-default.btn-green').withText('Create')) // Временное решение, не видит кнопку.
-        .click(Selector('div.panel.panel-default div.table-responsive tbody').find('tr').nth(0));
+        .click(Selector('div.panel.panel-default div.table-responsive tbody').find('tr').withText('task'));
     if (await Selector('div.panel-heading.clearfix.collapsed').withText('Properties').exists) {
         await t.click(Selector('.panel-heading-caption.left').withText('Properties'))
     }
@@ -347,5 +349,72 @@ test('Create task table', async t => {
         .typeText(Selector('.select2-search__field'), 
             'text')
         .click(Selector('.select2-results__option').withText('text Rich text'))        
+        .click(Selector('div.abris-detail-schema abris-panel.relation div.panel.panel-default div.abris-detail-entity div.panel.panel-default div.abris-detail-property div.col-lg-12.actions').find('button.btn.btn-default.btn-green').withText('Create'));
+    await t
+        .click(Selector('div.abris-detail-schema abris-panel.relation div.panel.panel-default div.abris-detail-entity div.panel.panel-default').find('div.dt-buttons .btn-default.btn-blue'))
+        .typeText(Selector('div.abris-detail-property .abris-property-column_name').find('input'),
+            'task_project_ref')
+        .typeText(Selector('div.abris-detail-property .abris-property-title').find('input'),
+            'Task to project reference')
+        .click(Selector('div.abris-detail-property .abris-property-ref_entity').find('.select2-selection.select2-selection--single'))
+        .typeText(Selector('.select2-search__field'), 
+            'project')
+        .click(Selector('.select2-results__option').withText('test_schema Test created schema project Project project_key'))      
+        .click(Selector('div.abris-detail-schema abris-panel.relation div.panel.panel-default div.abris-detail-entity div.panel.panel-default div.abris-detail-property div.col-lg-12.actions').find('button.btn.btn-default.btn-green').withText('Create'));
+});
+
+// test('Create task_project_reference', async t => {
+//     var nameTest = "task_to_proj_ref";
+//     t.expect(page.login());
+//     await t
+//         .resizeWindow(1366, 768)
+//         .click(page.generalMenu)
+//         .click(Selector('ul#side-menu.nav li').withText('Configuration'))
+//         .click(Selector('ul.nav.nav-second-level li').withText('Schemas'))
+//         .click(Selector('div.table-responsive tbody').find('tr#test_schema'));
+//     if (await Selector('div.panel-heading.clearfix.collapsed').withText('Entities').exists) {
+//         await t.click(Selector('.panel-heading-caption.left').withText('Entities'))
+//     }
+//     await t
+//         .click(Selector('div.panel.panel-default div.table-responsive tbody').find('tr').withText('task'));
+//     if (await Selector('div.panel-heading.clearfix.collapsed').withText('Properties').exists) {
+//         await t.click(Selector('.panel-heading-caption.left').withText('Properties'))
+//     }
+// });
+
+test('Create task_to_employee table', async t => {
+    var nameTest = "task_to_emp_table";
+    t.expect(page.login());
+    await t
+        .resizeWindow(1366, 768)
+        .click(page.generalMenu)
+        .click(Selector('ul#side-menu.nav li').withText('Configuration'))
+        .click(Selector('ul.nav.nav-second-level li').withText('Schemas'))
+        .click(Selector('div.table-responsive tbody').find('tr#test_schema'));
+    if (await Selector('div.panel-heading.clearfix.collapsed').withText('Entities').exists) {
+        await t.click(Selector('.panel-heading-caption.left').withText('Entities'))
+    }
+    await t
+        .click(Selector('div.abris-detail-schema div.panel.panel-default').find('div.dt-buttons .btn-default.btn-blue'))
+        .typeText(Selector('div.abris-detail-entity .abris-property-table_name').find('input'), 
+            'task_to_emp')
+        .typeText(Selector('div.abris-detail-entity .abris-property-title').find('input'),
+            'Tasks to employee')
+        // .click(Selector('div.panel.panel-default div.abris-detail-entity abris-actions div.row.er-actions-row div.col-lg-12.actions').find('button.btn.btn-default.btn-green'))
+        .click(Selector('div.abris-detail-schema abris-panel.relation div.panel.panel-default div.abris-detail-entity div.col-lg-12.actions').find('button.btn.btn-default.btn-green').withText('Create')) // Временное решение, не видит кнопку.
+        .click(Selector('div.panel.panel-default div.table-responsive tbody').find('tr').withText('task_to_emp'));
+    if (await Selector('div.panel-heading.clearfix.collapsed').withText('Properties').exists) {
+        await t.click(Selector('.panel-heading-caption.left').withText('Properties'))
+    }
+    await t
+        .click(Selector('div.abris-detail-schema abris-panel.relation div.panel.panel-default div.abris-detail-entity div.panel.panel-default').find('div.dt-buttons .btn-default.btn-blue'))
+        .typeText(Selector('div.abris-detail-property .abris-property-column_name').find('input'),
+            'task_emp_ref')
+        .typeText(Selector('div.abris-detail-property .abris-property-title').find('input'),
+            'Task to employee reference')
+        .click(Selector('div.abris-detail-property .abris-property-ref_entity').find('.select2-selection.select2-selection--single'))
+        .typeText(Selector('.select2-search__field'), 
+            'project')
+        .click(Selector('.select2-results__option').withText('test_schema Test created schema project Project project_key'))      
         .click(Selector('div.abris-detail-schema abris-panel.relation div.panel.panel-default div.abris-detail-entity div.panel.panel-default div.abris-detail-property div.col-lg-12.actions').find('button.btn.btn-default.btn-green').withText('Create'));
 });

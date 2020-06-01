@@ -59,7 +59,7 @@ test('Logout', async t => {
 		// .takeScreenshot("/" + nameTest + "_1.png")
 		.click(Selector('.authLogoutForm .er-actions-row .col-lg-12.actions').find('button.btn.btn-default.btn-green.abris-action-right'))
 		.expect(page.loginMenu.innerText)
-			.eql('Вход')		
+			.eql('Sign in')		
 		// .takeScreenshot("/" + nameTest + "_2.png");
 });
 
@@ -147,7 +147,7 @@ test('Project menu item', async t => {
         .typeText(Selector('.select2-search__field'), 
             'project')
         .click(Selector('.select2-results__option').withText('public standard public schema project Projects project_key'))
-        .click(Selector('div.abris-detail-schema div.col-lg-12.actions').find('button.btn.btn-default.btn-green').withText('Create'))
+        .click(Selector('div.abris-detail-menu_item div.col-lg-12.actions').find('button.btn.btn-default.btn-green').withText('Create'))
         .expect(Selector('div.alert.in.fade.alert-success'))
             .ok('Record not created.')
         // .takeScreenshot("/" + nameTest + "_1.png");
@@ -249,7 +249,7 @@ test('Employee menu item', async t => {
         .typeText(Selector('.select2-search__field'), 
             'employee')
         .click(Selector('.select2-results__option').withText('public standard public schema employee Employees employee_key'))
-        .click(Selector('div.abris-detail-schema div.col-lg-12.actions').find('button.btn.btn-default.btn-green').withText('Create'))
+        .click(Selector('div.abris-detail-menu_item div.col-lg-12.actions').find('button.btn.btn-default.btn-green').withText('Create'))
         .expect(Selector('div.alert.in.fade.alert-success'))
             .ok('Record not created.')
         // .takeScreenshot("/" + nameTest + "_1.png");

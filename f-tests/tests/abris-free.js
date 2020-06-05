@@ -106,13 +106,13 @@ test('Create project table', async t => {
     await t
         .click(Selector('div.abris-detail-schema div.panel.panel-default').find('div.dt-buttons .btn-default.btn-blue'))
         .typeText(Selector('div.abris-detail-entity .abris-property-table_name').find('input'), 
-            'project')
+            'test_project')
         .typeText(Selector('div.abris-detail-entity .abris-property-title').find('input'),
-            'Project')
+            'Test Project')
         // .click(Selector('div.panel.panel-default div.abris-detail-entity abris-actions div.row.er-actions-row div.col-lg-12.actions').find('button.btn.btn-default.btn-green'))
         .click(Selector('div.abris-detail-schema abris-panel.relation div.panel.panel-default div.abris-detail-entity div.col-lg-12.actions').find('button.btn.btn-default.btn-green').withText('Create')) // Временное решение, не видит кнопку.
         // .click(Selector('div.panel.panel-default div.table-responsive tbody').find('tr').nth(0));
-        .click(Selector('div.panel.panel-default div.table-responsive tbody').find('tr').withText('project'));
+        .click(Selector('div.panel.panel-default div.table-responsive tbody').find('tr').withText('test_project'));
     if (await Selector('div.panel-heading.clearfix.collapsed').withText('Properties').exists) {
         await t.click(Selector('.panel-heading-caption.left').withText('Properties'))
     }
@@ -146,8 +146,8 @@ test('Project menu item', async t => {
             'Test Project')
         .click(Selector('div.abris-detail-menu_item .abris-property-projection').find('.select2-selection.select2-selection--single'))
         .typeText(Selector('.select2-search__field'), 
-            'project')
-        .click(Selector('.select2-results__option').withText('public standard public schema project Projects project_key'))
+            'test_project')
+        .click(Selector('.select2-results__option').withText('test_schema Test created schema test_project Test Project test_project_key'))
         .click(Selector('div.abris-detail-menu_item div.col-lg-12.actions').find('button.btn.btn-default.btn-green').withText('Create'))
         .expect(Selector('div.alert.in.fade.alert-success'))
             .ok('Record not created.')
@@ -179,13 +179,13 @@ test('Create employee table', async t => {
     await t
         .click(Selector('div.abris-detail-schema div.panel.panel-default').find('div.dt-buttons .btn-default.btn-blue'))
         .typeText(Selector('div.abris-detail-entity .abris-property-table_name').find('input'), 
-            'employee')
+            'test_employee')
         .typeText(Selector('div.abris-detail-entity .abris-property-title').find('input'),
-            'Employees')
+            'Test Employees')
         // .click(Selector('div.panel.panel-default div.abris-detail-entity abris-actions div.row.er-actions-row div.col-lg-12.actions').find('button.btn.btn-default.btn-green'))
         .click(Selector('div.abris-detail-schema abris-panel.relation div.panel.panel-default div.abris-detail-entity div.col-lg-12.actions').find('button.btn.btn-default.btn-green').withText('Create')) // Временное решение, не видит кнопку.
         // .click(Selector('div.panel.panel-default div.table-responsive tbody').find('tr').nth(0));
-        .click(Selector('div.panel.panel-default div.table-responsive tbody').find('tr').withText('employee'));
+        .click(Selector('div.panel.panel-default div.table-responsive tbody').find('tr').withText('test_employee'));
     if (await Selector('div.panel-heading.clearfix.collapsed').withText('Properties').exists) {
         await t.click(Selector('.panel-heading-caption.left').withText('Properties'))
     }
@@ -249,8 +249,8 @@ test('Employee menu item', async t => {
             'Test Employee')
         .click(Selector('div.abris-detail-menu_item .abris-property-projection').find('.select2-selection.select2-selection--single'))
         .typeText(Selector('.select2-search__field'), 
-            'employee')
-        .click(Selector('.select2-results__option').withText('public standard public schema employee Employees employee_key'))
+            'test_employee')
+        .click(Selector('.select2-results__option').withText('test_schema Test created schema test_employee Test Employees test_employee_key'))
         .click(Selector('div.abris-detail-menu_item div.col-lg-12.actions').find('button.btn.btn-default.btn-green').withText('Create'))
         .expect(Selector('div.alert.in.fade.alert-success'))
             .ok('Record not created.')
@@ -358,8 +358,8 @@ test('Create task table', async t => {
             'Task to project reference')
         .click(Selector('div.abris-detail-property .abris-property-ref_entity').find('.select2-selection.select2-selection--single'))
         .typeText(Selector('.select2-search__field'), 
-            'project')
-        .click(Selector('.select2-results__option').withText('test_schema Test created schema project Project project_key'))      
+            'test_project')
+        .click(Selector('.select2-results__option').withText('test_schema Test created schema test_project Test Project test_project_key'))      
         .click(Selector('div.abris-detail-schema abris-panel.relation div.panel.panel-default div.abris-detail-entity div.panel.panel-default div.abris-detail-property div.col-lg-12.actions').find('button.btn.btn-default.btn-green').withText('Create'));
 });
 
@@ -414,7 +414,7 @@ test('Create task_to_employee table', async t => {
             'Task to employee reference')
         .click(Selector('div.abris-detail-property .abris-property-ref_entity').find('.select2-selection.select2-selection--single'))
         .typeText(Selector('.select2-search__field'), 
-            'project')
-        .click(Selector('.select2-results__option').withText('test_schema Test created schema project Project project_key'))      
+            'test_project')
+        .click(Selector('.select2-results__option').withText('test_schema Test created schema test_project Test Project test_project_key'))      
         .click(Selector('div.abris-detail-schema abris-panel.relation div.panel.panel-default div.abris-detail-entity div.panel.panel-default div.abris-detail-property div.col-lg-12.actions').find('button.btn.btn-default.btn-green').withText('Create'));
 });

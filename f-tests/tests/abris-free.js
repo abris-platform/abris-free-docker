@@ -452,3 +452,24 @@ test('Create task from project', async t => {
             'Test Task')
         .click(Selector('div.abris-detail-test_project abris-panel.relation div.panel.panel-default div.abris-detail-test_task div.col-lg-12.actions').find('button.btn.btn-default.btn-green').withText('Create'));
 });
+
+test('Create participants from project', async t => {
+    var nameTest = "partic_from_project";
+    t.expect(page.login());
+    await t
+        .resizeWindow(1366, 768)
+        .click(page.generalMenu)
+        .click(Selector('ul#side-menu.nav li').withText('Test Project'))
+        .click(Selector('div.table-responsive tbody tr').withText('Test Project'))
+    if (await Selector('div.panel-heading.clearfix.collapsed').withText('Test Participants').exists) {
+        await t.click(Selector('.panel-heading-caption.left').withText('Test Participants'))
+    }
+    await t
+        .click(Selector('div.abris-detail-test_project div.panel.panel-default').find('div.dt-buttons .btn-default.btn-blue'))
+        .click(Selector('div.abris-detail-test_task_to_emp .abris-property-test_employee_key button.btn.btn-default').find('i.fas.fa-plus'))
+        .typeText(Selector('div.abris-detail-test_employee .abris-property-name').find('input'), 
+            'Test Employee')
+        .click(Selector('div.abris-detail-test_task_to_emp div.detail-view-col.abris-view-extension div.abris-detail-test_employee div.col-lg-12.actions').find('button.btn.btn-default.btn-green').withText('Create'))
+        .click(Selector('div.detail-view-col.abris-view-extension div.abris-view-extension-part abris-actions.abris-view-top-actions button.btn.btn-default').find('span.fa.fa-times.fa-margin'))
+        .click(Selector('div.abris-detail-test_project abris-panel.relation div.panel.panel-default div.table-responsive div.abris-detail-test_task_to_emp div.col-lg-12.actions').find('button.btn.btn-default.btn-green').withText('Create'));
+});

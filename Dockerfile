@@ -16,9 +16,9 @@ RUN apt-get update -yqq \
     libzip-dev \
     && phpenmod zip \
     && echo "host   all   all   0.0.0.0/0   md5" >> /etc/postgresql/10/main/pg_hba.conf \
-    && echo "listen_addresses='*'" >> /etc/postgresql/10/main/postgresql.conf\
-    && curl -O https://abrisplatform.com/downloads/abris-free.zip\
-    && rm -rf /var/www/html/*\
+    && echo "listen_addresses='*'" >> /etc/postgresql/10/main/postgresql.conf \
+    && curl -O https://abrisplatform.com/downloads/abris-free.zip \
+    && rm -rf /var/www/html/* \
     && unzip abris-free.zip -d /var/www/html
 
 

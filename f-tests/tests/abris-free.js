@@ -19,7 +19,7 @@ test('Abris install', async t => {
         //     '123456')
         // .click(Selector('abris-bool.abris-property-createDatabase').find('input'))
         .takeScreenshot("/" + nameTest + "_1.png")
-        .click(Selector('button.btn.btn-default.btn-green.abris-action-right').withText('Install'))
+        .click(Selector('button.btn-green.abris-action-right').withText('Install'))
         .wait(10000)
         .expect(Selector('iframe #document body').withText('Install completed'))
             .ok('Install failed.') // Возможно не совсем верно работает.
@@ -38,9 +38,9 @@ test('Login', async t => {
 			'postgres')
 		.typeText(Selector('.authForm .row').find('input.form-control[data-bind="value: $data.passwd"]'),
 			'123456')
-		.click(Selector('.authForm .er-actions-row .col-lg-12.actions').find('button.btn.btn-default.btn-green.abris-action-right'))
+		.click(Selector('.authForm .er-actions-row .actions').find('button.btn-green.abris-action-right'))
 		.expect(page.loginMenu.innerText)
-			.eql('postgres');
+			.eql('P');
 		// .takeScreenshot("/" + nameTest + "_2.png");
 });
 
@@ -50,16 +50,16 @@ test('Logout', async t => {
 	await t
 		.resizeWindow(800, 600)
 		.expect(page.loginMenu.innerText)
-			.eql('postgres', {timeout: 5000});
+			.eql('P', {timeout: 5000});
 	await t
 		.navigateTo(url.home)
 		.eval(() => location.reload(true));
 	await t
 		.navigateTo(url.login)
 		// .takeScreenshot("/" + nameTest + "_1.png")
-		.click(Selector('.authLogoutForm .er-actions-row .col-lg-12.actions').find('button.btn.btn-default.btn-green.abris-action-right'))
-		.expect(page.loginMenu.innerText)
-			.eql('Sign in')		
+		.click(Selector('.authLogoutForm .er-actions-row .actions').find('button.btn-green.abris-action-right').withText('Logout'))     // 4 фантомные кнопки?
+		.expect(page.loginMenu.find('.fa-sign-in-alt').exists)
+			.ok('Sign in icon not found.')		
 		// .takeScreenshot("/" + nameTest + "_2.png");
 });
 
@@ -69,13 +69,13 @@ test('Create schema', async t => {
     await t
         .resizeWindow(1366, 768)
         .navigateTo(url.schema)
-        .click(Selector('.dt-buttons').find('.btn-default.btn-blue'))
+        .click(Selector('.dt-buttons').find('button.dt-button.btn-blue'))
         .typeText(Selector('div.abris-property-schema_name').find('input'), 
             'test_schema')
         .typeText(Selector('div.abris-property-title').find('input'), 
             'Test created schema')
-        .click(Selector('div.abris-detail-schema div.col-lg-12.actions').find('button.btn.btn-default.btn-green').withText('Create'))
-        .expect(Selector('div.alert.in.fade.alert-success'))
+        .click(Selector('div.abris-detail-schema .abris-view-bottom-actions .er-actions-row .actions').find('button.btn-green').withText('Create'))
+        .expect(Selector('div.alert.in.fade.alert-success').exists)
             .ok('Record not created.')
         // .takeScreenshot("/" + nameTest + "_1.png");
     await t
@@ -104,7 +104,7 @@ test('Create project table', async t => {
         await t.click(Selector('.panel-heading-caption.left').withText('Entities'))
     }
     await t
-        .click(Selector('div.abris-detail-schema div.panel.panel-default').find('div.dt-buttons .btn-default.btn-blue'))
+        .click(Selector('div.abris-detail-schema div.panel.panel-default').find('button.dt-button.btn-blue'))
         .typeText(Selector('div.abris-detail-entity .abris-property-table_name').find('input'), 
             'test_project')
         .typeText(Selector('div.abris-detail-entity .abris-property-title').find('input'),
@@ -117,7 +117,7 @@ test('Create project table', async t => {
         await t.click(Selector('.panel-heading-caption.left').withText('Properties'))
     }
     await t
-        .click(Selector('div.abris-detail-schema abris-panel.relation div.panel.panel-default div.abris-detail-entity div.panel.panel-default').find('div.dt-buttons .btn-default.btn-blue'))
+        .click(Selector('div.abris-detail-schema abris-panel.relation div.panel.panel-default div.abris-detail-entity div.panel.panel-default').find('button.dt-button.btn-blue'))
         .typeText(Selector('div.abris-detail-property .abris-property-column_name').find('input'),
             'name')
         .typeText(Selector('div.abris-detail-property .abris-property-title').find('input'),
@@ -139,7 +139,7 @@ test('Project menu item', async t => {
     await t
         .resizeWindow(1366, 768)
         .navigateTo(url.home + '/#list/menu_item')
-        .click(Selector('.dt-buttons').find('.btn-default.btn-blue'))
+        .click(Selector('.dt-buttons').find('button.dt-button.btn-blue'))
         .typeText(Selector('.abris-property-name').find('input'), 
             'test_project')
         .typeText(Selector('.abris-property-title').find('input'), 
@@ -177,7 +177,7 @@ test('Create employee table', async t => {
         await t.click(Selector('.panel-heading-caption.left').withText('Entities'))
     }
     await t
-        .click(Selector('div.abris-detail-schema div.panel.panel-default').find('div.dt-buttons .btn-default.btn-blue'))
+        .click(Selector('div.abris-detail-schema div.panel.panel-default').find('button.dt-button.btn-blue'))
         .typeText(Selector('div.abris-detail-entity .abris-property-table_name').find('input'), 
             'test_employee')
         .typeText(Selector('div.abris-detail-entity .abris-property-title').find('input'),
@@ -190,7 +190,7 @@ test('Create employee table', async t => {
         await t.click(Selector('.panel-heading-caption.left').withText('Properties'))
     }
     await t
-        .click(Selector('div.abris-detail-schema abris-panel.relation div.panel.panel-default div.abris-detail-entity div.panel.panel-default').find('div.dt-buttons .btn-default.btn-blue'))
+        .click(Selector('div.abris-detail-schema abris-panel.relation div.panel.panel-default div.abris-detail-entity div.panel.panel-default').find('button.dt-button.btn-blue'))
         .typeText(Selector('div.abris-detail-property .abris-property-column_name').find('input'),
             'name')
         .typeText(Selector('div.abris-detail-property .abris-property-title').find('input'),
@@ -205,7 +205,7 @@ test('Create employee table', async t => {
         // .click(Selector('.select2-results__option').withText('caption Headline'))        
         .click(Selector('div.abris-detail-schema abris-panel.relation div.panel.panel-default div.abris-detail-entity div.panel.panel-default div.abris-detail-property div.col-lg-12.actions').find('button.btn.btn-default.btn-green').withText('Create'));
     await t
-        .click(Selector('div.abris-detail-schema abris-panel.relation div.panel.panel-default div.abris-detail-entity div.panel.panel-default').find('div.dt-buttons .btn-default.btn-blue'))
+        .click(Selector('div.abris-detail-schema abris-panel.relation div.panel.panel-default div.abris-detail-entity div.panel.panel-default').find('button.dt-button.btn-blue'))
         .typeText(Selector('div.abris-detail-property .abris-property-column_name').find('input'),
             'work_from')
         .typeText(Selector('div.abris-detail-property .abris-property-title').find('input'),
@@ -220,7 +220,7 @@ test('Create employee table', async t => {
         .click(Selector('.select2-results__option').withText('time Time'))        
         .click(Selector('div.abris-detail-schema abris-panel.relation div.panel.panel-default div.abris-detail-entity div.panel.panel-default div.abris-detail-property div.col-lg-12.actions').find('button.btn.btn-default.btn-green').withText('Create'));
     await t
-        .click(Selector('div.abris-detail-schema abris-panel.relation div.panel.panel-default div.abris-detail-entity div.panel.panel-default').find('div.dt-buttons .btn-default.btn-blue'))
+        .click(Selector('div.abris-detail-schema abris-panel.relation div.panel.panel-default div.abris-detail-entity div.panel.panel-default').find('button.dt-button.btn-blue'))
         .typeText(Selector('div.abris-detail-property .abris-property-column_name').find('input'),
             'work_to')
         .typeText(Selector('div.abris-detail-property .abris-property-title').find('input'),
@@ -242,7 +242,7 @@ test('Employee menu item', async t => {
     await t
         .resizeWindow(1366, 768)
         .navigateTo(url.home + '/#list/menu_item')
-        .click(Selector('.dt-buttons').find('.btn-default.btn-blue'))
+        .click(Selector('.dt-buttons').find('button.dt-button.btn-blue'))
         .typeText(Selector('.abris-property-name').find('input'), 
             'test_employee')
         .typeText(Selector('.abris-property-title').find('input'), 
@@ -279,7 +279,7 @@ test('Create task table', async t => {
         await t.click(Selector('.panel-heading-caption.left').withText('Entities'))
     }
     await t
-        .click(Selector('div.abris-detail-schema div.panel.panel-default').find('div.dt-buttons .btn-default.btn-blue'))
+        .click(Selector('div.abris-detail-schema div.panel.panel-default').find('button.dt-button.btn-blue'))
         .typeText(Selector('div.abris-detail-entity .abris-property-table_name').find('input'), 
             'test_task')
         .typeText(Selector('div.abris-detail-entity .abris-property-title').find('input'),
@@ -291,7 +291,7 @@ test('Create task table', async t => {
         await t.click(Selector('.panel-heading-caption.left').withText('Properties'))
     }
     await t
-        .click(Selector('div.abris-detail-schema abris-panel.relation div.panel.panel-default div.abris-detail-entity div.panel.panel-default').find('div.dt-buttons .btn-default.btn-blue'))
+        .click(Selector('div.abris-detail-schema abris-panel.relation div.panel.panel-default div.abris-detail-entity div.panel.panel-default').find('button.dt-button.btn-blue'))
         .typeText(Selector('div.abris-detail-property .abris-property-column_name').find('input'),
             'title')
         .typeText(Selector('div.abris-detail-property .abris-property-title').find('input'),
@@ -306,7 +306,7 @@ test('Create task table', async t => {
         .click(Selector('.select2-results__option').withText('caption Headline'))        
         .click(Selector('div.abris-detail-schema abris-panel.relation div.panel.panel-default div.abris-detail-entity div.panel.panel-default div.abris-detail-property div.col-lg-12.actions').find('button.btn.btn-default.btn-green').withText('Create'));
     await t
-        .click(Selector('div.abris-detail-schema abris-panel.relation div.panel.panel-default div.abris-detail-entity div.panel.panel-default').find('div.dt-buttons .btn-default.btn-blue'))
+        .click(Selector('div.abris-detail-schema abris-panel.relation div.panel.panel-default div.abris-detail-entity div.panel.panel-default').find('button.dt-button.btn-blue'))
         .typeText(Selector('div.abris-detail-property .abris-property-column_name').find('input'),
             'due_time')
         .typeText(Selector('div.abris-detail-property .abris-property-title').find('input'),
@@ -321,7 +321,7 @@ test('Create task table', async t => {
         .click(Selector('.select2-results__option').withText('datetime Date and time'))        
         .click(Selector('div.abris-detail-schema abris-panel.relation div.panel.panel-default div.abris-detail-entity div.panel.panel-default div.abris-detail-property div.col-lg-12.actions').find('button.btn.btn-default.btn-green').withText('Create'));
     await t
-        .click(Selector('div.abris-detail-schema abris-panel.relation div.panel.panel-default div.abris-detail-entity div.panel.panel-default').find('div.dt-buttons .btn-default.btn-blue'))
+        .click(Selector('div.abris-detail-schema abris-panel.relation div.panel.panel-default div.abris-detail-entity div.panel.panel-default').find('button.dt-button.btn-blue'))
         .typeText(Selector('div.abris-detail-property .abris-property-column_name').find('input'),
             'progress')
         .typeText(Selector('div.abris-detail-property .abris-property-title').find('input'),
@@ -336,7 +336,7 @@ test('Create task table', async t => {
         .click(Selector('.select2-results__option').withText('progress Horizontal indicator'))        
         .click(Selector('div.abris-detail-schema abris-panel.relation div.panel.panel-default div.abris-detail-entity div.panel.panel-default div.abris-detail-property div.col-lg-12.actions').find('button.btn.btn-default.btn-green').withText('Create'));
     await t
-        .click(Selector('div.abris-detail-schema abris-panel.relation div.panel.panel-default div.abris-detail-entity div.panel.panel-default').find('div.dt-buttons .btn-default.btn-blue'))
+        .click(Selector('div.abris-detail-schema abris-panel.relation div.panel.panel-default div.abris-detail-entity div.panel.panel-default').find('button.dt-button.btn-blue'))
         .typeText(Selector('div.abris-detail-property .abris-property-column_name').find('input'),
             'description')
         .typeText(Selector('div.abris-detail-property .abris-property-title').find('input'),
@@ -351,7 +351,7 @@ test('Create task table', async t => {
         .click(Selector('.select2-results__option').withText('text Rich text'))        
         .click(Selector('div.abris-detail-schema abris-panel.relation div.panel.panel-default div.abris-detail-entity div.panel.panel-default div.abris-detail-property div.col-lg-12.actions').find('button.btn.btn-default.btn-green').withText('Create'));
     await t
-        .click(Selector('div.abris-detail-schema abris-panel.relation div.panel.panel-default div.abris-detail-entity div.panel.panel-default').find('div.dt-buttons .btn-default.btn-blue'))
+        .click(Selector('div.abris-detail-schema abris-panel.relation div.panel.panel-default div.abris-detail-entity div.panel.panel-default').find('button.dt-button.btn-blue'))
         .typeText(Selector('div.abris-detail-property .abris-property-column_name').find('input'),
             'test_project_key')
         .typeText(Selector('div.abris-detail-property .abris-property-title').find('input'),
@@ -395,7 +395,7 @@ test('Create task_to_employee table', async t => {
         await t.click(Selector('.panel-heading-caption.left').withText('Entities'))
     }
     await t
-        .click(Selector('div.abris-detail-schema div.panel.panel-default').find('div.dt-buttons .btn-default.btn-blue'))
+        .click(Selector('div.abris-detail-schema div.panel.panel-default').find('button.dt-button.btn-blue'))
         .typeText(Selector('div.abris-detail-entity .abris-property-table_name').find('input'), 
             'test_task_to_emp')
         .typeText(Selector('div.abris-detail-entity .abris-property-title').find('input'),
@@ -407,7 +407,7 @@ test('Create task_to_employee table', async t => {
         await t.click(Selector('.panel-heading-caption.left').withText('Properties'))
     }
     await t
-        .click(Selector('div.abris-detail-schema abris-panel.relation div.panel.panel-default div.abris-detail-entity div.panel.panel-default').find('div.dt-buttons .btn-default.btn-blue'))
+        .click(Selector('div.abris-detail-schema abris-panel.relation div.panel.panel-default div.abris-detail-entity div.panel.panel-default').find('button.dt-button.btn-blue'))
         .typeText(Selector('div.abris-detail-property .abris-property-column_name').find('input'),
             'task_emp_ref')
         .typeText(Selector('div.abris-detail-property .abris-property-title').find('input'),
@@ -418,7 +418,7 @@ test('Create task_to_employee table', async t => {
         .click(Selector('.select2-results__option').withText('test_schema Test created schema test_project Test Project test_project_key'))      
         .click(Selector('div.abris-detail-schema abris-panel.relation div.panel.panel-default div.abris-detail-entity div.panel.panel-default div.abris-detail-property div.col-lg-12.actions').find('button.btn.btn-default.btn-green').withText('Create'));
     await t
-        .click(Selector('div.abris-detail-schema abris-panel.relation div.panel.panel-default div.abris-detail-entity div.panel.panel-default').find('div.dt-buttons .btn-default.btn-blue'))
+        .click(Selector('div.abris-detail-schema abris-panel.relation div.panel.panel-default div.abris-detail-entity div.panel.panel-default').find('button.dt-button.btn-blue'))
         .typeText(Selector('div.abris-detail-property .abris-property-column_name').find('input'),
             'test_employee_key')
         .typeText(Selector('div.abris-detail-property .abris-property-title').find('input'),
@@ -437,7 +437,7 @@ test('Create task from project', async t => {
         .resizeWindow(1366, 768)
         .click(page.generalMenu)
         .click(Selector('ul#side-menu.nav li').withText('Test Project'))
-        .click(Selector('.dt-buttons').find('.btn-default.btn-blue'))
+        .click(Selector('.dt-buttons').find('button.dt-button.btn-blue'))
         .typeText(Selector('div.abris-detail-test_project .abris-property-name').find('input'), 
             'Test Project')
         .click(Selector('div.abris-detail-test_project div.col-lg-12.actions').find('button.btn.btn-default.btn-green').withText('Create'))
@@ -447,7 +447,7 @@ test('Create task from project', async t => {
         await t.click(Selector('.panel-heading-caption.left').withText('Test Tasks'))
     }
     await t
-        .click(Selector('div.abris-detail-test_project div.panel.panel-default').find('div.dt-buttons .btn-default.btn-blue'))
+        .click(Selector('div.abris-detail-test_project div.panel.panel-default').find('button.dt-button.btn-blue'))
         .typeText(Selector('div.abris-detail-test_task .abris-property-title').find('input'), 
             'Test Task')
         .click(Selector('div.abris-detail-test_project abris-panel.relation div.panel.panel-default div.abris-detail-test_task div.col-lg-12.actions').find('button.btn.btn-default.btn-green').withText('Create'));
@@ -465,7 +465,7 @@ test('Create participants from project', async t => {
         await t.click(Selector('.panel-heading-caption.left').withText('Test Participants'))
     }
     await t
-        .click(Selector('div.abris-detail-test_project div.panel.panel-default').find('div.dt-buttons .btn-default.btn-blue'))
+        .click(Selector('div.abris-detail-test_project div.panel.panel-default').find('button.dt-button.btn-blue'))
         .click(Selector('div.abris-detail-test_task_to_emp .abris-property-test_employee_key button.btn.btn-default').find('i.fas.fa-plus'))
         .typeText(Selector('div.abris-detail-test_employee .abris-property-name').find('input'), 
             'Test Employee')
@@ -487,7 +487,7 @@ test('Create project_to_emp table', async t => {
         await t.click(Selector('.panel-heading-caption.left').withText('Entities'))
     }
     await t
-        .click(Selector('div.abris-detail-schema div.panel.panel-default').find('div.dt-buttons .btn-default.btn-blue'))
+        .click(Selector('div.abris-detail-schema div.panel.panel-default').find('button.dt-button.btn-blue'))
         .typeText(Selector('div.abris-detail-entity .abris-property-table_name').find('input'), 
             'test_project_to_emp')
         .typeText(Selector('div.abris-detail-entity .abris-property-title').find('input'),

@@ -21,7 +21,7 @@ test('Abris install', async t => {
         .takeScreenshot("/" + nameTest + "_1.png")
         .click(Selector('button.btn-green.abris-action-right').withText('Install'))
         .wait(10000)
-        .expect(Selector('iframe #document body').withText('Install completed'))
+        .expect(Selector('iframe #document body').withText('Install completed').exists)
             .ok('Install failed.') // Возможно не совсем верно работает.
         // .hover(Selector('iframe #document body').withText('Install completed'))
         .takeScreenshot("/" + nameTest + "_2.png");
@@ -75,7 +75,7 @@ test('Create schema', async t => {
         .typeText(Selector('div.abris-property-title').find('input'), 
             'Test created schema')
         .click(Selector('div.abris-detail-schema .abris-view-bottom-actions .er-actions-row .actions').find('button.btn-green').withText('Create'))
-        .expect(Selector('div.alert.in.fade.alert-success').exists)
+        .expect(Selector('div.alert.in.fade.alert-success').visible)
             .ok('Record not created.')
         // .takeScreenshot("/" + nameTest + "_1.png");
     await t
@@ -149,7 +149,7 @@ test('Project menu item', async t => {
             'test_project')
         .click(Selector('.select2-results__option').withText('test_schema Test created schema test_project Test Project test_project_key'))
         .click(Selector('div.abris-detail-menu_item .abris-view-bottom-actions .er-actions-row .actions').find('button.btn-green').withText('Create'))
-        .expect(Selector('div.alert.in.fade.alert-success'))
+        .expect(Selector('div.alert.in.fade.alert-success').visible)
             .ok('Record not created.')
         // .takeScreenshot("/" + nameTest + "_1.png");
     await t
@@ -252,7 +252,7 @@ test('Employee menu item', async t => {
             'test_employee')
         .click(Selector('.select2-results__option').withText('test_schema Test created schema test_employee Test Employees test_employee_key'))
         .click(Selector('div.abris-detail-menu_item .abris-view-bottom-actions .er-actions-row .actions').find('button.btn-green').withText('Create'))
-        .expect(Selector('div.alert.in.fade.alert-success'))
+        .expect(Selector('div.alert.in.fade.alert-success').visible)
             .ok('Record not created.')
         // .takeScreenshot("/" + nameTest + "_1.png");
     await t
@@ -441,7 +441,7 @@ test('Create task from project', async t => {
         .typeText(Selector('div.abris-detail-test_project .abris-property-name').find('input'), 
             'Test Project')
         .click(Selector('div.abris-detail-test_project .abris-view-bottom-actions .er-actions-row .actions').find('button.btn-green').withText('Create'))
-        .expect(Selector('div.alert.in.fade.alert-success'))
+        .expect(Selector('div.alert.in.fade.alert-success').visible)
             .ok('Record not created.')
     if (await Selector('div.panel-heading.clearfix.collapsed').withText('Test Tasks').exists) {
         await t.click(Selector('.panel-heading-caption.left').withText('Test Tasks'))

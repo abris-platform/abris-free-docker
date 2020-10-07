@@ -21,7 +21,7 @@ test('Abris install', async t => {
         .takeScreenshot("/" + nameTest + "_1.png")
         .click(Selector('button.btn-green.abris-action-right').withText('Install'))
         .wait(10000)
-        .expect(Selector('iframe #document body').withText('Install completed').exists)
+        .expect(Selector('iframe #document body #text').withText('Install completed'))
             .ok('Install failed.') // Возможно не совсем верно работает.
         // .hover(Selector('iframe #document body').withText('Install completed'))
         .takeScreenshot("/" + nameTest + "_2.png");
@@ -202,7 +202,7 @@ test('Create employee table', async t => {
         // .click(Selector('div.abris-detail-property .abris-property-type').find('.select2-selection.select2-selection--single'))
         // .typeText(Selector('.select2-search__field'), 
         //     'caption')
-        // .click(Selector('.select2-results__option').withText('caption Headline'))        
+        // .click(Selector('.select2-results__option').withText('caption Headline'))  
         .click(Selector('div.abris-detail-schema abris-panel.relation div.panel.panel-default div.abris-detail-entity div.panel.panel-default div.abris-detail-property .abris-view-bottom-actions .er-actions-row .actions').find('button.btn-green').withText('Create'));
     await t
         .click(Selector('div.abris-detail-schema abris-panel.relation div.panel.panel-default div.abris-detail-entity div.panel.panel-default').find('button.dt-button.btn-blue'))
@@ -488,6 +488,9 @@ test('Create project_to_emp table', async t => {
             'plain')
         .click(Selector('.select2-results__option').withText('plain Text without formatting'))
         .click(Selector('div.abris-detail.abris-detail-property abris-actions.abris-view-bottom-actions .er-actions-row .actions').find('button.btn-green'));
+    await t
+		.navigateTo(url.home)
+		.eval(() => location.reload(true));
     await t    
         .resizeWindow(1366, 768)
         .click(page.generalMenu)
@@ -498,14 +501,16 @@ test('Create project_to_emp table', async t => {
         await t.click(Selector('.panel-heading-caption.left').withText('Entities'))
     }
     await t
-        .click(Selector('div.abris-detail-schema div.panel.panel-default').find('button.dt-button.btn-blue'))
-        .typeText(Selector('div.abris-detail.abris-detail-entity .abris-property-table_name').find('input'), 
-            'test_project_to_emp')
-        .typeText(Selector('div.abris-detail.abris-detail-entity .abris-property-title').find('input'),
-            'Test Project participants')
+        .click(Selector('div.panel.panel-default div.table-responsive tbody').find('tr').withText('test_task_to_emp'))
+        // .click(Selector('div.abris-detail-schema div.panel.panel-default').find('button.dt-button.btn-blue'))
+        // .typeText(Selector('div.abris-detail.abris-detail-entity .abris-property-table_name').find('input'), 
+        //     'test_project_to_emp')
+        // .typeText(Selector('div.abris-detail.abris-detail-entity .abris-property-title').find('input'),
+        //     'Test Project participants')
         .typeText(Selector('div.abris-detail.abris-detail-entity .abris-property-plain.abris-property-view_definition').find('textarea.plainEditor'),
             'SELECT DISTINCT test_task_to_emp.test_task_to_emp_key as test_project_to_emp_key,\n\ttest_task.test_project_key,\n\ttest_task_to_emp.test_employee_key\n\tFROM (test_task_to_emp\n\tJOIN test_task USING (test_task_key));')
-        .click(Selector('div.abris-detail-schema abris-panel.relation div.panel.panel-default div.abris-detail.abris-detail-entity .abris-view-bottom-actions .er-actions-row .actions').find('button.btn-green').withText('Create')) // Временное решение, не видит кнопку.
+        .click(Selector('div.abris-detail-schema abris-panel.relation div.panel.panel-default div.abris-detail.abris-detail-entity .abris-view-bottom-actions .er-actions-row .actions').find('button.btn-green'))
+        // .click(Selector('div.abris-detail-schema abris-panel.relation div.panel.panel-default div.abris-detail.abris-detail-entity .abris-view-bottom-actions .er-actions-row .actions').find('button.btn-green').withText('Create')) // Временное решение, не видит кнопку.
         .click(Selector('div.panel.panel-default div.table-responsive tbody').find('tr').withText('test_project_to_emp'));
     if (await Selector('div.panel-heading.clearfix.collapsed').withText('Properties').exists) {
         await t.click(Selector('.panel-heading-caption.left').withText('Properties'))

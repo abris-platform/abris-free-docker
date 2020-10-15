@@ -6,6 +6,7 @@ unzip ./abris-ui.zip
 cp -r ./packages/abris-ui/dist/* ./dist/
 curl --output abris-server-base.zip --location --header "PRIVATE-TOKEN: xs9d1-T2G4pa73QsPKaf" "https://abris.site:8091/api/v4/projects/69/jobs/artifacts/master/download?job=build";
 cd ./dist/ && unzip ../abris-server-base.zip
+curl --output Server/sql/pg_abris_free.sql --location --header "PRIVATE-TOKEN: xs9d1-T2G4pa73QsPKaf" "https://abris.site:8091/abris-lab/pg_abris/-/blob/master/pg_abris_free.sql";
 zip -r abris-free.zip ./*
 mv abris-free.zip /var/www/comsite/data/www/abrisplatform.com/downloads/
 cd /tmp/abris-free && rm -Rf ./*

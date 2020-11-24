@@ -35,6 +35,6 @@ testing:
     entrypoint: ["/bin/sh", "-c"]
   script:
     - cd f-tests
-    - env TEST_PAGE_ADDRESS=http://abris.site:8030 /opt/testcafe/docker/testcafe-docker.sh chromium -S -q -s /tmp/host-server-docs/abris-free tests 
+    - env TEST_PAGE_ADDRESS=http://abris.site:8030 /opt/testcafe/docker/testcafe-docker.sh chromium -S -s /tmp/host-server-docs/abris-free tests 
   except: 
     - tags

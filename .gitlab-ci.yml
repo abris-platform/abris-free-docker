@@ -1,6 +1,7 @@
 stages:
   - Build
   - Testing
+  - Release
 
 build:
   stage: Build
@@ -19,7 +20,7 @@ repack:
   # trigger: 
   #   - abris-lab/abris-free-server
   #   - abris-lab/abris-ui
-  when: on_success
+  when: always
   script: 
     - chmod +x ./repack.sh
     - ./repack.sh
@@ -38,3 +39,22 @@ testing:
     - env TEST_PAGE_ADDRESS=http://abris.site:8030 /opt/testcafe/docker/testcafe-docker.sh chromium -S -s /tmp/host-server-docs/abris-free tests 
   except: 
     - tags
+
+release:
+  stage: Release
+  when: on_success
+  before_script:
+    - chmod +x ./release.sh
+  script:
+    - ./release.sh
+  artifacts:
+    when: on_success
+    name: 'abris-distrib'
+    paths:
+    - distrib
+    expire_in: never
+  only:
+    refs:
+      - master
+    changes:
+      - "release_description.md"

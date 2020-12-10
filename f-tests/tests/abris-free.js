@@ -138,6 +138,51 @@ test('Create project table', async t => {
             'caption')
         .click(Selector('.select2-results__option').withText('caption Headline'))        
         .click(Selector('.abris-detail-schema .panel-default .abris-detail-entity .panel-default .abris-detail-property .abris-view-bottom-actions .actions').find('button.btn-green.action-add'));
+    await t
+        .click(Selector('.abris-detail-schema .panel-default .abris-detail-entity .panel-default').find('button.dt-button.btn-blue'))
+        .typeText(Selector('.abris-detail-property .abris-property-column_name').find('input'),
+            'info')
+        .typeText(Selector('.abris-detail-property .abris-property-title').find('input'),
+            'Information')
+        .click(Selector('.abris-detail-property .abris-property-data_type').find('.select2-selection.select2-selection--single'))
+        .typeText(Selector('.select2-search__field'), 
+            'text')
+        .click(Selector('.select2-results__option').withText('text'))
+        .click(Selector('.abris-detail-property .abris-property-type').find('.select2-selection.select2-selection--single'))
+        .typeText(Selector('.select2-search__field'), 
+            'plain')
+        .click(Selector('.select2-results__option').withText('plain Text without formatting'))        
+        .click(Selector('.abris-detail-schema .panel-default .abris-detail-entity .panel-default .abris-detail-property .abris-view-bottom-actions .actions').find('button.btn-green.action-add'));
+    await t
+        .click(Selector('.abris-detail-schema .panel-default .abris-detail-entity .panel-default').find('button.dt-button.btn-blue'))
+        .typeText(Selector('.abris-detail-property .abris-property-column_name').find('input'),
+            'cost')
+        .typeText(Selector('.abris-detail-property .abris-property-title').find('input'),
+            'Total cost')
+        .click(Selector('.abris-detail-property .abris-property-data_type').find('.select2-selection.select2-selection--single'))
+        .typeText(Selector('.select2-search__field'), 
+            'numeric')
+        .click(Selector('.select2-results__option').withText('numeric'))
+        .click(Selector('.abris-detail-property .abris-property-type').find('.select2-selection.select2-selection--single'))
+        .typeText(Selector('.select2-search__field'), 
+            'money')
+        .click(Selector('.select2-results__option').withText('money Money'))        
+        .click(Selector('.abris-detail-schema .panel-default .abris-detail-entity .panel-default .abris-detail-property .abris-view-bottom-actions .actions').find('button.btn-green.action-add'));
+    await t
+        .click(Selector('.abris-detail-schema .panel-default .abris-detail-entity .panel-default').find('button.dt-button.btn-blue'))
+        .typeText(Selector('.abris-detail-property .abris-property-column_name').find('input'),
+            'deadline')
+        .typeText(Selector('.abris-detail-property .abris-property-title').find('input'),
+            'Deadline')
+        .click(Selector('.abris-detail-property .abris-property-data_type').find('.select2-selection.select2-selection--single'))
+        .typeText(Selector('.select2-search__field'), 
+            'date')
+        .click(Selector('.select2-results__option').withText('date'))
+        .click(Selector('.abris-detail-property .abris-property-type').find('.select2-selection.select2-selection--single'))
+        .typeText(Selector('.select2-search__field'), 
+            'date')
+        .click(Selector('.select2-results__option').withText('date Date'))        
+        .click(Selector('.abris-detail-schema .panel-default .abris-detail-entity .panel-default .abris-detail-property .abris-view-bottom-actions .actions').find('button.btn-green.action-add')); 
 });
 
 test('Project menu item', async t => {

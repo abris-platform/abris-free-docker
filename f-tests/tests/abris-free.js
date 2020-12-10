@@ -102,7 +102,7 @@ test('Create project table', async t => {
         .click(page.generalMenu)
         .click(Selector('ul#side-menu li.menu-item').withText('Configuration'))
         .click(Selector('ul.nav.nav-second-level li.menu-item').withText('Schemas'))
-        .click(Selector('div.table-responsive tbody').find('tr#test_schema'));
+        .click(Selector('div.table-responsive tbody').find('tr#public'));
     if (await Selector('div.panel-heading.clearfix.collapsed').withText('Entities').exists) {
         await t.click(Selector('.panel-heading-caption.left').withText('Entities'))
     }
@@ -199,7 +199,7 @@ test('Project menu item', async t => {
         .click(Selector('.abris-list-menu_item .abris-detail-menu_item .abris-property-projection').find('.select2-selection.select2-selection--single'))
         .typeText(Selector('.select2-search__field'), 
             'project')
-        .click(Selector('.select2-results__option').withText('test_schema Created schema project Project project_key'))
+        .click(Selector('.select2-results__option').withText('public standard public schema project Project project_key'))
         .click(Selector('.abris-list-menu_item .abris-detail-menu_item .abris-view-bottom-actions .actions').find('button.btn-green.action-add'))
         .expect(Selector('div.alert.in.fade.alert-success').visible)
             .ok('Record not created.')
@@ -223,7 +223,7 @@ test('Create employee table', async t => {
         .click(page.generalMenu)
         .click(Selector('ul#side-menu li.menu-item').withText('Configuration'))
         .click(Selector('ul.nav.nav-second-level li').withText('Schemas'))
-        .click(Selector('div.table-responsive tbody').find('tr#test_schema'));
+        .click(Selector('div.table-responsive tbody').find('tr#public'));
     if (await Selector('div.panel-heading.clearfix.collapsed').withText('Entities').exists) {
         await t.click(Selector('.panel-heading-caption.left').withText('Entities'))
     }
@@ -305,7 +305,7 @@ test('Employee menu item', async t => {
         .click(Selector('div.abris-detail-menu_item .abris-property-projection').find('.select2-selection.select2-selection--single'))
         .typeText(Selector('.select2-search__field'), 
             'employee')
-        .click(Selector('.select2-results__option').withText('test_schema Created schema employee Employees employee_key'))
+        .click(Selector('.select2-results__option').withText('public standard public schema employee Employees employee_key'))
         .click(Selector('div.abris-detail-menu_item .abris-view-bottom-actions .actions').find('button.btn-green.action-add'))
         .expect(Selector('div.alert.in.fade.alert-success').visible)
             .ok('Record not created.')
@@ -329,7 +329,7 @@ test('Create task table', async t => {
         .click(page.generalMenu)
         .click(Selector('ul#side-menu li.menu-item').withText('Configuration'))
         .click(Selector('ul.nav.nav-second-level li').withText('Schemas'))
-        .click(Selector('div.table-responsive tbody').find('tr#test_schema'));
+        .click(Selector('div.table-responsive tbody').find('tr#public'));
     if (await Selector('div.panel-heading.clearfix.collapsed').withText('Entities').exists) {
         await t.click(Selector('.panel-heading-caption.left').withText('Entities'))
     }
@@ -418,7 +418,7 @@ test('Create task table', async t => {
         .click(Selector('.abris-detail-property .abris-property-ref_entity').find('.select2-selection.select2-selection--single'))
         .typeText(Selector('.select2-search__field'), 
             'project')
-        .click(Selector('.select2-results__option').withText('test_schema Created schema project Project project_key'))
+        .click(Selector('.select2-results__option').withText('public standard public schema project Project project_key'))
         .takeScreenshot("/" + nameTest + "_5.png")
         .click(Selector('.abris-detail-schema .panel-default .abris-detail-entity .panel-default .abris-detail-property .abris-view-bottom-actions .actions').find('button.btn-green.action-add'));
 });
@@ -431,7 +431,7 @@ test('Create task table', async t => {
 //         .click(page.generalMenu)
 //         .click(Selector('ul#side-menu.nav li').withText('Configuration'))
 //         .click(Selector('ul.nav.nav-second-level li').withText('Schemas'))
-//         .click(Selector('div.table-responsive tbody').find('tr#test_schema'));
+//         .click(Selector('div.table-responsive tbody').find('tr#public'));
 //     if (await Selector('div.panel-heading.clearfix.collapsed').withText('Entities').exists) {
 //         await t.click(Selector('.panel-heading-caption.left').withText('Entities'))
 //     }
@@ -450,7 +450,7 @@ test('Create task_to_employee table', async t => {
         .click(page.generalMenu)
         .click(Selector('ul#side-menu li.menu-item').withText('Configuration'))
         .click(Selector('ul.nav.nav-second-level li').withText('Schemas'))
-        .click(Selector('div.table-responsive tbody').find('tr#test_schema'));
+        .click(Selector('div.table-responsive tbody').find('tr#public'));
     if (await Selector('div.panel-heading.clearfix.collapsed').withText('Entities').exists) {
         await t.click(Selector('.panel-heading-caption.left').withText('Entities'))
     }
@@ -475,7 +475,7 @@ test('Create task_to_employee table', async t => {
         .click(Selector('.abris-detail-property .abris-property-ref_entity').find('.select2-selection.select2-selection--single'))
         .typeText(Selector('.select2-search__field'), 
             'project')
-        .click(Selector('.select2-results__option').withText('test_schema Created schema project Project project_key'))
+        .click(Selector('.select2-results__option').withText('public standard public schema project Project project_key'))
         .takeScreenshot("/" + nameTest + "_1.png")
         .click(Selector('.abris-detail-schema .panel-default .abris-detail-entity .panel-default .abris-detail-property .abris-view-bottom-actions .actions').find('button.btn-green.action-add'));
     await t
@@ -487,7 +487,7 @@ test('Create task_to_employee table', async t => {
         .click(Selector('.abris-detail-property .abris-property-ref_entity').find('.select2-selection.select2-selection--single'))
         .typeText(Selector('.select2-search__field'), 
             'employee')
-        .click(Selector('.select2-results__option').withText('test_schema Created schema employee Employees employee_key'))
+        .click(Selector('.select2-results__option').withText('public standard public schema employee Employees employee_key'))
         .takeScreenshot("/" + nameTest + "_2.png")
         .click(Selector('.abris-detail-schema .panel-default .abris-detail-entity .panel-default .abris-detail-property .abris-view-bottom-actions .actions').find('button.btn-green.action-add'));
 });
@@ -561,7 +561,7 @@ test('Create project_to_emp table', async t => {
         .click(page.generalMenu)
         .click(Selector('ul#side-menu li.menu-item').withText('Configuration'))
         .click(Selector('ul.nav.nav-second-level li').withText('Schemas'))
-        .click(Selector('div.table-responsive tbody').find('tr#test_schema'));
+        .click(Selector('div.table-responsive tbody').find('tr#public'));
     if (await Selector('div.panel-heading.clearfix.collapsed').withText('Entities').exists) {
         await t.click(Selector('.panel-heading-caption.left').withText('Entities'))
     }

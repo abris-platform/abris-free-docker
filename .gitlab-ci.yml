@@ -3,18 +3,6 @@ stages:
   - Testing
   - Release
 
-build:
-  stage: Build
-  when: manual
-  script:
-    - docker pull abrissite/abris-free
-    - docker ps -aq --filter "name=abris_free" | grep -q . && docker stop abris_free && docker rm -fv abris_free
-    - docker run -d -it --name abris_free -p 8030:80 -p 45432:5432 abrissite/abris-free
-    - sleep 30s # Ожидание воскрешения веб-морды. Обеспечение работоспособности тестов.
-  tags:
-    - shell
-  allow_failure: false
-
 repack:
   stage: Build
   # trigger: 
@@ -28,6 +16,18 @@ repack:
     - shell
   # allow_failure: false # Отключение обязательности репака
 
+build:
+  stage: Build
+  when: manual
+  script:
+    - docker pull abrissite/abris-free
+    - docker ps -aq --filter "name=abris_free" | grep -q . && docker stop abris_free && docker rm -fv abris_free
+    - docker run -d -it --name abris_free -p 8030:80 -p 45432:5432 abrissite/abris-free
+    - sleep 30s # Ожидание воскрешения веб-морды. Обеспечение работоспособности тестов.
+  tags:
+    - shell
+  allow_failure: false
+
 testing:
   stage: Testing
   when: on_success
@@ -36,7 +36,7 @@ testing:
     entrypoint: ["/bin/sh", "-c"]
   script:
     - cd f-tests
-    - env TEST_PAGE_ADDRESS=http://abris.site:8030 /opt/testcafe/docker/testcafe-docker.sh chromium -S -s /tmp/host-server-docs/abris-free tests 
+    - env TEST_PAGE_ADDRESS=http://abris.site:8030 /opt/testcafe/docker/testcafe-docker.sh chromium -S -s /tmp/host-server-docs/abris-free ./tests 
   except: 
     - tags
 
@@ -47,12 +47,12 @@ release:
     - chmod +x ./release.sh
   script:
     - ./release.sh
-  artifacts:
-    when: on_success
-    name: 'abris-distrib'
-    paths:
-    - distrib
-    expire_in: never
+  # artifacts:
+  #   when: on_success
+  #   name: 'abris-free'
+  #   paths:
+  #   - dist/*
+  #   expire_in: never
   only:
     refs:
       - master

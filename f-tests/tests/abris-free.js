@@ -523,7 +523,7 @@ test('Create participants from project', async t => {
         .resizeWindow(1366, 768)
         .click(page.generalMenu)
         .click(Selector('ul#side-menu li.menu-item').withText('Project'))
-        .click(Selector('div.table-responsive tbody tr').withText('Project'))
+        .click(Selector('div.table-responsive tbody tr td').withText('Project'))
     if (await Selector('div.panel-heading.clearfix.collapsed').withText('Participants').exists) {
         await t.click(Selector('.panel-heading-caption.left').withText('Participants'))
     }

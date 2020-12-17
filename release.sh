@@ -24,11 +24,6 @@ if [[ "$R_VERSION" == "" ]]; then
     exit 1;
 fi
 
-sed -i "s/VERSION/$R_VERSION/g" ./distrib/html/version.json;
-sed -i "s/VERSION/$R_VERSION/g" ./distrib/html/Server/version.json;
-sed -i "s/Test/Release/g" ./distrib/html/version.json;
-sed -i "s/Test/Release/g" ./distrib/html/Server/version.json;
-
 echo
 echo "Getting the latest project commits:";
 echo

@@ -12,6 +12,12 @@ repack:
   script: 
     - chmod +x ./repack.sh
     - ./repack.sh
+  artifacts:  
+    when: on_success
+    name: 'abris-free'
+    paths:
+    - /tmp/abris-free/dist/*
+    expire_in: never
   tags:
     - shell
   # allow_failure: false # Отключение обязательности репака
@@ -47,12 +53,6 @@ release:
     - chmod +x ./release.sh
   script:
     - ./release.sh
-  # artifacts:
-  #   when: on_success
-  #   name: 'abris-free'
-  #   paths:
-  #   - dist/*
-  #   expire_in: never
   only:
     refs:
       - master

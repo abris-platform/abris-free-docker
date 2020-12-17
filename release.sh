@@ -14,7 +14,7 @@ done < release_description.md;
 
 RELEASE_NAME="Abris v${R_VERSION}";
 PROJECT_ID=(5 69 2 68); #(UI, SERVER, PG, ABRIS)
-PROJECT_NAME=("abris-ui" "abris-server-base" "pg_abris" "abris-free");
+PROJECT_NAME=("abris-ui" "abris-free-server" "pg_abris" "abris-free");
 
 # Check for correct tag value
 if [[ "$R_VERSION" == "" ]]; then

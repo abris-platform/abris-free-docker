@@ -8,7 +8,7 @@ curl --output abris-ui.zip --location --header "PRIVATE-TOKEN: xs9d1-T2G4pa73QsP
 unzip ./abris-ui.zip
 cp -r ./packages/abris-ui/dist/* ./dist/
 curl --output abris-server-base.zip --location --header "PRIVATE-TOKEN: xs9d1-T2G4pa73QsPKaf" "https://abris.site:8091/api/v4/projects/69/jobs/artifacts/master/download?job=build";
-unzip ./abris-server-base.zip ./dist/
+unzip ./abris-server-base.zip -d ./dist/
 curl --output Server/sql/pg_abris_free.sql --location --header "PRIVATE-TOKEN: xs9d1-T2G4pa73QsPKaf" "https://abris.site:8091/api/v4/projects/2/repository/files/pg_abris_free.sql/raw?ref=master";
 sed -i "s/VERSION/$R_VERSION/g" ./dist/version.json;
 sed -i "s/VERSION/$R_VERSION/g" ./dist/Server/version.json;

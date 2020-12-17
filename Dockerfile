@@ -21,12 +21,11 @@ RUN apt-get update -yqq \
     && rm -rf /var/www/html/* \
     && unzip abris-free.zip -d /var/www/html
 
-
 EXPOSE 5432
 EXPOSE 80
 
 CMD service apache2 start\
     && service postgresql start \
     && su postgres -c "psql  -U postgres -c \"ALTER USER postgres WITH PASSWORD '123456';\"" \
-    && chmod -R 777 /var/www/html/Server \
+    && chmod -R 777 /var/www/html \
     && /bin/bash

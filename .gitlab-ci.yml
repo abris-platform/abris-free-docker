@@ -12,7 +12,7 @@ repack:
   script: 
     - chmod +x ./repack.sh
     - ./repack.sh
-    - cp /tmp/abris-free/dist ./
+    - cp -r /tmp/abris-free/dist ./
   artifacts:  
     when: on_success
     name: 'abris-free'

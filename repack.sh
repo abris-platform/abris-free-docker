@@ -14,5 +14,5 @@ sed -i "s/VERSION/$R_VERSION/g" ./dist/version.json;
 sed -i "s/VERSION/$R_VERSION/g" ./dist/Server/version.json;
 sed -i "s/Test/Free/g" ./dist/version.json;
 sed -i "s/Test/Free/g" ./dist/Server/version.json;
-zip -r abris-free.zip ./dist/*
+cd ./dist && zip -r ../abris-free.zip ./* && cd ..
 mv abris-free.zip /var/www/comsite/data/www/abrisplatform.com/downloads/

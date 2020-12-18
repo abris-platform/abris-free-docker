@@ -39,7 +39,7 @@ for i in ${!PROJECT_ID[@]}; do
 		JOB[$i]=$(echo ${JOB[$i]} | jq '.id'); # Замена JSON'а на id процесса.
 		DESCRIPTION="${DESCRIPTION}* **${PROJECT_NAME[$i]}** [artifact](https://abris.site:8091/abris-lab/${PROJECT_NAME[$i]}/-/jobs/${JOB[$i]}/artifacts/download) (job [${JOB[$i]}](https://abris.site:8091/abris-lab/${PROJECT_NAME[$i]}/-/jobs/${JOB[$i]})), commit: https://abris.site:8091/abris-lab/${PROJECT_NAME[$i]}/commit/${COMMIT[$i]}\n"; # Добавление ссылки в описание.
 	else
-		JOB[$i]=$(curl --header "PRIVATE-TOKEN: ${CI_API_TOKEN}" "https://abris.site:8091/api/v4/projects/${PROJECT_ID[$i]}/jobs?scope=success" | jq 'map (select (.name=="build")) | .[0]'); # JSON последнего успешного деплоя до релиза.
+		JOB[$i]=$(curl --header "PRIVATE-TOKEN: ${CI_API_TOKEN}" "https://abris.site:8091/api/v4/projects/${PROJECT_ID[$i]}/jobs?scope=success" | jq 'map (select (.name=="repack")) | .[0]'); # JSON последнего успешного деплоя до релиза.
 		COMMIT[$i]=$(echo ${JOB[$i]} | jq --raw-output '.commit.short_id');
 		JOB[$i]=$(echo ${JOB[$i]} | jq '.id'); # Замена JSON'а на id процесса.
 	fi

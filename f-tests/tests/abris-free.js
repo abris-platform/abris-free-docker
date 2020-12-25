@@ -49,7 +49,7 @@ test('Login', async t => {
 
 test('Logout', async t => {
 	var nameTest = "logout";
-	t.expect(page.login());	
+    await page.login(t);
 	await t
 		.resizeWindow(800, 600)
 		.expect(page.loginMenu.innerText)
@@ -68,7 +68,7 @@ test('Logout', async t => {
 
 test('Create schema', async t => {
     var nameTest = "create_schema";
-    t.expect(page.login());
+    await page.login(t);
     await t
         .resizeWindow(1366, 768)
         .navigateTo(url.schema)
@@ -96,7 +96,7 @@ test('Create schema', async t => {
 
 test('Create project table', async t => {
     var nameTest = "project_table";
-    t.expect(page.login());
+    await page.login(t);
     await t
         .resizeWindow(1366, 768)
         .click(page.generalMenu)
@@ -187,7 +187,7 @@ test('Create project table', async t => {
 
 test('Project menu item', async t => {
     var nameTest = "project_menu_item";
-    t.expect(page.login());
+    await page.login(t);
     await t
         .resizeWindow(1366, 768)
         .navigateTo(url.home + '/#list/menu_item')
@@ -217,7 +217,7 @@ test('Project menu item', async t => {
 
 test('Create employee table', async t => {
     var nameTest = "employee_table";
-    t.expect(page.login());
+    await page.login(t);
     await t
         .resizeWindow(1366, 768)
         .click(page.generalMenu)
@@ -293,7 +293,7 @@ test('Create employee table', async t => {
 
 test('Employee menu item', async t => {
     var nameTest = "employee_menu_item";
-    t.expect(page.login());
+    await page.login(t);
     await t
         .resizeWindow(1366, 768)
         .navigateTo(url.home + '/#list/menu_item')
@@ -323,7 +323,7 @@ test('Employee menu item', async t => {
 
 test('Create task table', async t => {
     var nameTest = "task_table";
-    t.expect(page.login());
+    await page.login(t);
     await t
         .resizeWindow(1366, 768)
         .click(page.generalMenu)
@@ -444,7 +444,7 @@ test('Create task table', async t => {
 
 test('Create task_to_employee table', async t => {
     var nameTest = "task_to_emp_table";
-    t.expect(page.login());
+    await page.login(t);
     await t
         .resizeWindow(1366, 768)
         .click(page.generalMenu)
@@ -494,7 +494,7 @@ test('Create task_to_employee table', async t => {
 
 test('Create task from project', async t => {
     var nameTest = "task_from_project";
-    t.expect(page.login());
+    await page.login(t);
     await t
         .resizeWindow(1366, 768)
         .click(page.generalMenu)
@@ -518,7 +518,7 @@ test('Create task from project', async t => {
 
 test('Create participants from project', async t => {
     var nameTest = "partic_from_project";
-    t.expect(page.login());
+    await page.login(t);
     await t
         .resizeWindow(1366, 768)
         .click(page.generalMenu)
@@ -540,7 +540,7 @@ test('Create participants from project', async t => {
 
 test('Create project_to_emp table', async t => {
     var nameTest = "project_to_emp_table";
-    t.expect(page.login());
+    await page.login(t);
     await t
         .navigateTo(url.home + '/#list/property')
         .typeText(Selector('.a-search.input-group').find('input'), 

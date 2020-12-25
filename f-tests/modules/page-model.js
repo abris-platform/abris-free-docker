@@ -35,7 +35,7 @@ export class Page {
         this.searchInput            = Selector('abris-search').find('input[placeholder="Поиск..."]');
     }
 
-    async login () {
+    async login (t) {
         await t
             .setTestSpeed(0.9)
             .click(this.loginMenu)
@@ -45,7 +45,7 @@ export class Page {
             .click(this.signInButton);
     }
 
-    async logout () {
+    async logout (t) {
         await t
             .setTestSpeed(0.9)
             .click(this.loginMenu)

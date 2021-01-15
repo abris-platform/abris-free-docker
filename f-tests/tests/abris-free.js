@@ -109,6 +109,7 @@ test('Create project table', async t => {
             'project')
         .typeText(Selector('.abris-list-schema .abris-detail-entity .abris-property-title').find('input'),
             'Project')
+        .click(Selector('.abris-property-bool.abris-property-create_pkey', {timeout: 0}).find('abris-checkbox'))
         .click(Selector('.abris-list-schema .abris-detail-schema .panel-default .abris-detail-entity .abris-view-bottom-actions .actions').find('button.btn-green.action-add'))
         // .click(Selector('div.panel.panel-default div.table-responsive tbody').find('tr').nth(0));
         .click(Selector('.panel-default div.table-responsive tbody').find('tr').withText('project'));
@@ -227,6 +228,7 @@ test('Create employee table', async t => {
             'employee')
         .typeText(Selector('.abris-list-schema .abris-detail-entity .abris-property-title').find('input'),
             'Employees')
+        .click(Selector('.abris-property-bool.abris-property-create_pkey', {timeout: 0}).find('abris-checkbox'))
         // .click(Selector('div.panel.panel-default div.abris-detail-entity abris-actions div.row.er-actions-row div.col-lg-12.actions').find('button.btn.btn-default.btn-green'))
         .click(Selector('.abris-list-schema .abris-detail-schema .panel-default .abris-detail-entity .abris-view-bottom-actions .actions').find('button.btn-green.action-add'))
         // .click(Selector('div.panel.panel-default div.table-responsive tbody').find('tr').nth(0));

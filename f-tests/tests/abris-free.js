@@ -14,6 +14,10 @@ test('Abris install', async t => {
         .resizeWindow(1366, 768)
         .navigateTo(url.install)
         .takeScreenshot("/" + nameTest + "_1.png")
+        // <заглушка>
+        .click(Selector('abris-switch.abris-property-setupNewConnection'))
+        .typeText(Selector('abris-passwordinput.abris-property-serverPassword'), '123456')
+        // </заглушка>
         .click(Selector('button.btn-green.abris-action-right').withText('Install'))
         .wait(10000)
         .expect(Selector('iframe #document body #text').withText('Install completed'))

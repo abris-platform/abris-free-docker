@@ -25,9 +25,9 @@ export default class URL {
 
 export class Page {
     constructor () {
-        this.loginMenu              = Selector('.btn-login-navbar');
-        this.loginInput             = Selector('.modal-content .modal-body').find('input.form-control[data-bind="value: $data.usename, valueUpdate: \\\'keyup\\\'"]');
-        this.passwordInput          = Selector('.modal-content .modal-body').find('input.form-control[data-bind="value: $data.passwd"]');
+        this.loginMenu              = Selector('.btn-navbar.btn-login-navbar');
+        this.loginInput             = Selector('.modal-content .authForm abris-string').find('input.form-control');
+        this.passwordInput          = Selector('.modal-content .authForm abris-passwordinput').find('input.form-control');
         this.signInButton           = Selector('.modal-content .authForm').find('.abris-action-right');
         this.signOutButton          = Selector('.modal-content .authLogoutForm').find('.abris-action-right');
         this.generalMenu            = Selector('#menu-toggler');
@@ -38,6 +38,7 @@ export class Page {
     async login (t) {
         await t
             .setTestSpeed(0.9)
+            .resizeWindow(1366, 768)
             .click(this.loginMenu)
             .wait(750)
             .typeText(this.loginInput, 'postgres')            
@@ -48,6 +49,7 @@ export class Page {
     async logout (t) {
         await t
             .setTestSpeed(0.9)
+            .resizeWindow(1366, 768)
             .click(this.loginMenu)
             .click(this.signOutButton);
     }

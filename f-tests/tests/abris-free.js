@@ -25,7 +25,6 @@ test('Abris install', async t => {
 test('Login', async t => {
 	var nameTest = "login";
 	await t
-		.resizeWindow(800, 600)
 		.navigateTo(url.login)
         // .takeScreenshot("/" + nameTest + "_1.png")
         .wait(750)
@@ -34,7 +33,7 @@ test('Login', async t => {
     .typeText(Selector('.authForm').find('input.form-control[data-bind="value: $data.passwd"]'),
         '123456')
     .click(Selector('.authForm').find('button.btn-green.abris-action-right'))
-    .expect(page.loginMenu.innerText)
+    .expect(page.loginMenu.find('span').innerText)
         .eql('P', {timeout: 5000})
     .navigateTo(url.login)
     .expect(Selector('.authLogoutForm label[data-bind="text: $data.userFioMessage"]').innerText)
@@ -46,8 +45,7 @@ test('Logout', async t => {
 	var nameTest = "logout";
     await page.login(t);
 	await t
-		.resizeWindow(800, 600)
-		.expect(page.loginMenu.innerText)
+		.expect(page.loginMenu.find('span').innerText)
 			.eql('P', {timeout: 5000});
 	await t
 		.navigateTo(url.home)
@@ -56,7 +54,7 @@ test('Logout', async t => {
 		.navigateTo(url.login)
 		// .takeScreenshot("/" + nameTest + "_1.png")
 		.click(Selector('.authLogoutForm').find('button.btn-green.abris-action-right').withText('Logout'))     // 4 фантомные кнопки?
-		.expect(Selector('span.btn-navbar.btn-login-navbar i.fas.fa-sign-in-alt').visible)
+		.expect(page.loginMenu.find('svg.svg-icon').visible)
 			.ok('Sign in icon not found. User not logged out.')	
 		// .takeScreenshot("/" + nameTest + "_2.png");
 });
@@ -65,7 +63,6 @@ test('Create schema', async t => {
     var nameTest = "create_schema";
     await page.login(t);
     await t
-        .resizeWindow(1366, 768)
         .navigateTo(url.schema)
         .takeScreenshot("/" + nameTest + "_1.png")
         .click(Selector('.dt-buttons').find('button.dt-button.btn-blue'))
@@ -93,7 +90,6 @@ test('Create project table', async t => {
     var nameTest = "project_table";
     await page.login(t);
     await t
-        .resizeWindow(1366, 768)
         .click(page.generalMenu)
         .click(Selector('ul#side-menu li.menu-item').withText('Configuration'))
         .click(Selector('ul.nav.nav-second-level li.menu-item').withText('Schemas'))
@@ -184,7 +180,6 @@ test('Project menu item', async t => {
     var nameTest = "project_menu_item";
     await page.login(t);
     await t
-        .resizeWindow(1366, 768)
         .navigateTo(url.home + '/#list/menu_item')
         .click(Selector('.dt-buttons').find('button.dt-button.btn-blue'))
         .typeText(Selector('.abris-property-name').find('input'), 
@@ -214,7 +209,6 @@ test('Create employee table', async t => {
     var nameTest = "employee_table";
     await page.login(t);
     await t
-        .resizeWindow(1366, 768)
         .click(page.generalMenu)
         .click(Selector('ul#side-menu li.menu-item').withText('Configuration'))
         .click(Selector('ul.nav.nav-second-level li').withText('Schemas'))
@@ -283,7 +277,6 @@ test('Employee menu item', async t => {
     var nameTest = "employee_menu_item";
     await page.login(t);
     await t
-        .resizeWindow(1366, 768)
         .navigateTo(url.home + '/#list/menu_item')
         .click(Selector('.dt-buttons').find('button.dt-button.btn-blue'))
         .typeText(Selector('.abris-property-name').find('input'), 
@@ -313,7 +306,6 @@ test('Create task table', async t => {
     var nameTest = "task_table";
     await page.login(t);
     await t
-        .resizeWindow(1366, 768)
         .click(page.generalMenu)
         .click(Selector('ul#side-menu li.menu-item').withText('Configuration'))
         .click(Selector('ul.nav.nav-second-level li').withText('Schemas'))
@@ -414,7 +406,6 @@ test('Create task_to_employee table', async t => {
     var nameTest = "task_to_emp_table";
     await page.login(t);
     await t
-        .resizeWindow(1366, 768)
         .click(page.generalMenu)
         .click(Selector('ul#side-menu li.menu-item').withText('Configuration'))
         .click(Selector('ul.nav.nav-second-level li').withText('Schemas'))
@@ -463,7 +454,6 @@ test('Create task from project', async t => {
     var nameTest = "task_from_project";
     await page.login(t);
     await t
-        .resizeWindow(1366, 768)
         .click(page.generalMenu)
         .click(Selector('ul#side-menu li.menu-item').withText('Project'))
         .click(Selector('.dt-buttons').find('button.dt-button.btn-blue'))
@@ -487,7 +477,6 @@ test('Create participants from project', async t => {
     var nameTest = "partic_from_project";
     await page.login(t);
     await t
-        .resizeWindow(1366, 768)
         .click(page.generalMenu)
         .click(Selector('ul#side-menu li.menu-item').withText('Project'))
         .click(Selector('div.table-responsive tbody tr td').withText('Project'))
@@ -524,7 +513,6 @@ test('Create project_to_emp table', async t => {
 		.navigateTo(url.home)
 		.eval(() => location.reload(true));
     await t    
-        .resizeWindow(1366, 768)
         .click(page.generalMenu)
         .click(Selector('ul#side-menu li.menu-item').withText('Configuration'))
         .click(Selector('ul.nav.nav-second-level li').withText('Schemas'))

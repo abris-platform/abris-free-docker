@@ -1,52 +1,62 @@
-# Release version: 3.2 
+# Release version: 3.3 
 ## Description
 ### User Interface:
 ##### Changes:
-- Completely redesigned user interface;
-- Separator for visual forms;
-- Improved notifications;
-- Additional localization;
-- Interactive help section;
+- Table form new management tools;
+- Introduce new graphical structure;
+- Display format of icons;
+- Data editing process;
+- Introduce config viewmodel;
+- Start install page and form redesign;
+- Support typeCast from widgets;
+- Forgot password hint;
 - Markup improvements;
 - General improvements.
 ##### Fixes:
-- Language selector;
-- Search field;
-- Focus trouble;
-- Filter popup form;
+- Graphical control elements;
+- System data types;
+- CSS classes for icons;
+- Adding tree elements;
+- Virtual data structures;
+- Table row visibility;
+- Fixes for other browsers;
 - Displaying a tree segment;
-- Displaying main menu items;
 - Date & Time pickers;
 - General elements changes;
-- Color themes;
 - Layout fixes.
 ### Abris:
-- Separate instance for testing;
-- Reworking tests for a new design;
+- Change login function calling;
+- Reducing build timeout;
+- Change tests screensize and move its call;
+- Remove abris project recursion;
 - Fine tuning the pipeline.
 ### Database:
 ##### Changes:
-- Add function to automatically set primary keys for view;
-- Function create_menu ignores tables with multiple keys;
-- Changing the setting of primary keys;
-- Composite primary key support;
-- Add function to create a copy of projection;
-- Add help table and view;
-- Add function to replace a projection properties;
-- Some changes to create and update virtual projection_property;
-- Change the message for exception PA023;
-- Add relation for type of display and data type;
-- Add composite types and arrays into column_type.
+- Add the ability to set the size of types inside an array;
+- Change the list of types that have size: remove the "char" type;
+- Add the ability to set different read only rules for projections;
+- Change Read-only mode to Edit mode for projection_entity;
+- Add functions for converting file data;
+- Change pg_extension_config_dump parameters.
 ##### Fixes:
-- Fix consuming a lot of RAM during installation;
-- Fix menu for main projections;
-- Some changes for projection_entity trigger;
-- Fix empty table_type;
-- Fix update of projection name for projection_entity;
-- Fix replacing projection property up;
-- Fix setting jump when update projection name.
+- Fix an error messages;
+- Fix a name of the menu item created from the scheme;
+- Fix the display of temporary schemes;
+- Fix additional parameters for Edit mode of projection_entity;
+- Fix view_projection_entity for using Edit mode;
+- Fix the contents of the "meta" menu;
+- Fix the "clean" function.
 ### Server:
-- Updates submodules;
-- Setting custom configs;
-- Mailing list fixes;
+- Fix count on distinct fields;
+- Fix array EQ operation;
+- NEQ condition for array operand;
+- Test coverage;
+- Fix currentKey for constracted tables;
+- Fix currentRow ordering;
+- Add format method for subfields;
+- Add type confersion parameter for fields;
+- Fix https ckeck;
+- Support query preprocessing;
+- More preprocessing events;
+- Fix preProcessing params;
 _____

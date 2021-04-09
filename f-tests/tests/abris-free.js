@@ -431,6 +431,7 @@ test('Create task_to_employee table', async t => {
             'task_to_emp')
         .typeText(Selector('.abris-detail-entity .abris-property-title').find('input'),
             'Participants')
+        .click(Selector('.abris-property-create_pkey', {timeout: 0}).find('.radiobutton-label').withText('UUID'))
         .click(Selector('.abris-detail-schema .panel-default .abris-detail-entity .abris-view-bottom-actions .actions').find('button.btn-green.action-add'))
         .click(Selector('.panel-default div.table-responsive tbody').find('tr').withText('task_to_emp'));
     if (await Selector('div.panel-heading.collapsed').withText('Properties').exists) {
@@ -439,7 +440,7 @@ test('Create task_to_employee table', async t => {
     await t
         .click(Selector('.abris-detail-schema .panel-default .abris-detail-entity .panel-default').find('button.dt-button.btn-blue'))
         .typeText(Selector('.abris-detail-property .abris-property-column_name').find('input'),
-            'task_emp_ref')
+            'task_key') // task_emp_ref, заменён для поддержки актуальности руководства
         .typeText(Selector('.abris-detail-property .abris-property-title').find('input'),
             'Task to employee reference')
         .click(Selector('.abris-property-is_fkey').find('.checkbox__text'))

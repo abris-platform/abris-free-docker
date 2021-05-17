@@ -50,6 +50,6 @@ echo
 
 # Release сreation
 echo "POST release data:"
-curl --header 'Content-Type: application/json' --header "Private-Token: ${CI_API_TOKEN}"\
+curl --header 'Content-Type: application/json' --header "PRIVATE-TOKEN: ${CI_API_TOKEN}"\
     --data "{ \"name\": \"${RELEASE_NAME}\", \"tag_name\": \"${R_VERSION}\", \"description\": \"${DESCRIPTION}\", \"assets\": { \"links\": [{ \"name\": \"abris-free\", \"url\": \"https://gitlab.abris.site/abris-lab/abris-free/-/jobs/${JOB[@]:(-1)}/artifacts/download\" }] } }"\
     --request POST https://gitlab.abris.site/api/v4/projects/68/releases?ref=master | jq '.[]';

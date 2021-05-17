@@ -32,7 +32,7 @@ export class Page {
         this.signOutButton          = Selector('.modal-content .authLogoutForm').find('.abris-action-right');
         this.generalMenu            = Selector('#menu-toggler');
         this.tableMenu              = Selector('.dropdown-toggle').find('.btn.btn-default.btn-blue');
-        this.searchInput            = Selector('abris-search').find('input[placeholder="Поиск..."]');
+        this.searchInput            = Selector('.abrs-page-title-buttons abris-search').find('input');
     }
 
     async login (t) {

@@ -118,8 +118,10 @@ test('Create project table', async t => {
         await t.click(Selector('div.panel-heading').withText('Properties'))
     }
     await t
+        .hover(Selector('.abris-detail-schema .panel-default .abris-detail-entity .panel-default').withText('Properties').find('div.bottom'))
         .takeScreenshot("/" + nameTest + "_3.png")
         .click(Selector('.abris-detail-schema .panel-default .abris-detail-entity .panel-default').find('button.dt-button.btn-blue'))
+        .hover(Selector('.abris-detail-schema .panel-default .abris-detail-entity .panel-default .abris-detail-property .abris-view-bottom-actions .actions'))
         .takeScreenshot("/" + nameTest + "_4.png")
         .typeText(Selector('.abris-detail-property .abris-property-column_name').find('input'),
             'name')

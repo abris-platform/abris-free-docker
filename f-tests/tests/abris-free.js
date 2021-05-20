@@ -334,12 +334,13 @@ test('Create task table', async t => {
             'Tasks')
         .click(Selector('.abris-property-create_pkey', {timeout: 0}).find('.radiobutton-label').withText('UUID'))
         .click(Selector('.abris-detail-schema .panel-default .abris-detail-entity .abris-view-bottom-actions .actions').find('button.btn-green.action-add'))
-        .click(Selector('.panel-default div.table-responsive tbody').find('tr').withText('task'));
+        .click(Selector('.panel-default div.table-responsive tbody tr').find('td').withText('Task'));
     if (await Selector('div.panel-heading.collapsed').withText('Properties').exists) {
         await t.click(Selector('div.panel-heading').withText('Properties'))
     }
     await t
         .click(Selector('.abris-detail-schema .panel-default .abris-detail-entity .panel-default').find('button.dt-button.btn-blue'))
+        .hover(Selector('.abris-detail-schema .panel-default .abris-detail-entity .panel-default').withText('Properties').find('.abris-view-bottom-actions'))
         .typeText(Selector('.abris-detail-property .abris-property-column_name').find('input'),
             'title')
         .typeText(Selector('.abris-detail-property .abris-property-title').find('input'),
@@ -356,6 +357,7 @@ test('Create task table', async t => {
         .click(Selector('.abris-detail-schema .panel-default .abris-detail-entity .panel-default .abris-detail-property .abris-view-bottom-actions .actions').find('button.btn-green.action-add'));
     await t
         .click(Selector('.abris-detail-schema .panel-default .abris-detail-entity .panel-default').find('button.dt-button.btn-blue'))
+        .hover(Selector('.abris-detail-schema .panel-default .abris-detail-entity .panel-default').withText('Properties').find('.abris-view-bottom-actions'))
         .typeText(Selector('.abris-detail-property .abris-property-column_name').find('input'),
             'due_time')
         .typeText(Selector('.abris-detail-property .abris-property-title').find('input'),
@@ -372,6 +374,7 @@ test('Create task table', async t => {
         .click(Selector('.abris-detail-schema .panel-default .abris-detail-entity .panel-default .abris-detail-property .abris-view-bottom-actions .actions').find('button.btn-green.action-add'));
     await t
         .click(Selector('.abris-detail-schema .panel-default .abris-detail-entity .panel-default').find('button.dt-button.btn-blue'))
+        .hover(Selector('.abris-detail-schema .panel-default .abris-detail-entity .panel-default').withText('Properties').find('.abris-view-bottom-actions'))
         .typeText(Selector('.abris-detail-property .abris-property-column_name').find('input'),
             'progress')
         .typeText(Selector('.abris-detail-property .abris-property-title').find('input'),
@@ -388,6 +391,7 @@ test('Create task table', async t => {
         .click(Selector('.abris-detail-schema .panel-default .abris-detail-entity .panel-default .abris-detail-property .abris-view-bottom-actions .actions').find('button.btn-green.action-add'));
     await t
         .click(Selector('.abris-detail-schema .panel-default .abris-detail-entity .panel-default').find('button.dt-button.btn-blue'))
+        .hover(Selector('.abris-detail-schema .panel-default .abris-detail-entity .panel-default').withText('Properties').find('.abris-view-bottom-actions'))
         .typeText(Selector('.abris-detail-property .abris-property-column_name').find('input'),
             'description')
         .typeText(Selector('.abris-detail-property .abris-property-title').find('input'),
@@ -404,6 +408,7 @@ test('Create task table', async t => {
         .click(Selector('.abris-detail-schema .panel-default .abris-detail-entity .panel-default .abris-detail-property .abris-view-bottom-actions .actions').find('button.btn-green.action-add'));
     await t
         .click(Selector('.abris-detail-schema .panel-default .abris-detail-entity .panel-default').find('button.dt-button.btn-blue'))
+        .hover(Selector('.abris-detail-schema .panel-default .abris-detail-entity .panel-default').withText('Properties').find('.abris-view-bottom-actions'))
         .typeText(Selector('.abris-detail-property .abris-property-column_name').find('input'),
             'project_key')
         .typeText(Selector('.abris-detail-property .abris-property-title').find('input'),
@@ -438,12 +443,13 @@ test('Create task_to_employee table', async t => {
             'Participants')
         .click(Selector('.abris-property-create_pkey', {timeout: 0}).find('.radiobutton-label').withText('UUID'))
         .click(Selector('.abris-detail-schema .panel-default .abris-detail-entity .abris-view-bottom-actions .actions').find('button.btn-green.action-add'))
-        .click(Selector('.panel-default div.table-responsive tbody').find('tr').withText('task_to_emp'));
+        .click(Selector('.panel-default div.table-responsive tbody tr').find('td').withText('Participants'));
     if (await Selector('div.panel-heading.collapsed').withText('Properties').exists) {
         await t.click(Selector('div.panel-heading').withText('Properties'))
     }
     await t
         .click(Selector('.abris-detail-schema .panel-default .abris-detail-entity .panel-default').find('button.dt-button.btn-blue'))
+        .hover(Selector('.abris-detail-schema .panel-default .abris-detail-entity .panel-default').withText('Properties').find('.abris-view-bottom-actions'))
         .typeText(Selector('.abris-detail-property .abris-property-column_name').find('input'),
             'task_key') // task_emp_ref, заменён для поддержки актуальности руководства
         .typeText(Selector('.abris-detail-property .abris-property-title').find('input'),
@@ -457,6 +463,7 @@ test('Create task_to_employee table', async t => {
         .click(Selector('.abris-detail-schema .panel-default .abris-detail-entity .panel-default .abris-detail-property .abris-view-bottom-actions .actions').find('button.btn-green.action-add'));
     await t
         .click(Selector('.abris-detail-schema .panel-default .abris-detail-entity .panel-default').find('button.dt-button.btn-blue'))
+        .hover(Selector('.abris-detail-schema .panel-default .abris-detail-entity .panel-default').withText('Properties').find('.abris-view-bottom-actions'))
         .typeText(Selector('.abris-detail-property .abris-property-column_name').find('input'),
             'employee_key')
         .typeText(Selector('.abris-detail-property .abris-property-title').find('input'),

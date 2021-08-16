@@ -10,6 +10,7 @@ cp -r ./packages/abris-ui/dist/* ./dist/
 curl --output abris-server-base.zip --location --header "PRIVATE-TOKEN: xs9d1-T2G4pa73QsPKaf" "https://gitlab.abris.site/api/v4/projects/69/jobs/artifacts/master/download?job=build"; # Project ID: 69 == abris-free-server
 unzip ./abris-server-base.zip -d ./dist/
 curl --output dist/Server/sql_install/pg_abris_free.sql --location --header "PRIVATE-TOKEN: xs9d1-T2G4pa73QsPKaf" "https://gitlab.abris.site/api/v4/projects/2/repository/files/pg_abris_free.sql/raw?ref=master"; # Project ID: 2 == pg_abris
+curl --output dist/Server/sql_install/mysql_abris_free.sql --location --header "PRIVATE-TOKEN: xs9d1-T2G4pa73QsPKaf" "https://gitlab.abris.site/api/v4/projects/72/repository/files/mysql_abris_free.sql/raw?ref=master"; # Project ID: 72 == mysql_abris_free
 sed -i "s/VERSION/$R_VERSION/g" ./dist/version.json;
 sed -i "s/VERSION/$R_VERSION/g" ./dist/Server/version.json;
 sed -i "s/Test/Free/g" ./dist/version.json;

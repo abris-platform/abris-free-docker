@@ -1,10 +1,11 @@
 stages:
+  - Verification
   - Build
   - Testing
   - Release
 
 repack:
-  stage: Build
+  stage: Verification
   when: always
   script: 
     - chmod +x ./repack.sh

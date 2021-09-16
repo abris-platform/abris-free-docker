@@ -17,3 +17,9 @@ sed -i "s/Test/Free/g" ./dist/version.json;
 sed -i "s/Test/Free/g" ./dist/Server/version.json;
 cd ./dist && zip -r ../abris-free.zip ./* && cd ..
 mv abris-free.zip /var/www/comsite/data/www/abrisplatform.com/downloads/
+
+mkdir -p /tmp/abris-free/databases && cd /tmp/abris-free/databases
+cp /tmp/abris-free/dist/Server/sql_install/pg_abris_free.sql .
+cp /tmp/abris-free/dist/Server/sql_install/mysql_abris_free.sql .
+zip -r ../abris-free-databases.zip ./* 
+mv ../abris-free-databases.zip /var/www/comsite/data/www/abrisplatform.com/downloads/

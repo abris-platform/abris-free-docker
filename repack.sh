@@ -1,7 +1,6 @@
 #!/bin/bash
 
 R_VERSION=$(grep 'Release version' release_description.md | grep -Po '\d{1,2}\.\d{1,3}\.?\d{0,3}');
-
 cd /tmp/abris-free && rm -Rf ./*
 mkdir -p /tmp/abris-free/dist/images/ && cd /tmp/abris-free
 curl --output abris-ui.zip --location --header "PRIVATE-TOKEN: xs9d1-T2G4pa73QsPKaf" "https://gitlab.abris.site/api/v4/projects/5/jobs/artifacts/master/download?job=build-free"; # Project ID: 5 == abris-ui

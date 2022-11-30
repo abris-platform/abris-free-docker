@@ -8,7 +8,7 @@ cd /tmp/abris-free && rm -Rf ./*
 mkdir -p /tmp/abris-free/dist/images/ && cd /tmp/abris-free
 curl --output abris-ui.zip --location --header "PRIVATE-TOKEN: ${token}" "${apiAddress}/5/jobs/artifacts/master/download?job=build-free"; # Project ID: 5 == abris-ui
 unzip ./abris-ui.zip
-cp -r ./packages/abris-ui/dist/* ./dist/
+cp -r ./packages/abris-ui/dist-free/* ./dist/
 curl --output abris-server-base.zip --location --header "PRIVATE-TOKEN: ${token}" "${apiAddress}/69/jobs/artifacts/master/download?job=build"; # Project ID: 69 == abris-free-server
 unzip ./abris-server-base.zip -d ./dist/
 curl --output dist/Server/sql_install/pg_abris_free.sql --location --header "PRIVATE-TOKEN: ${token}" "${apiAddress}/2/repository/files/pg_abris_free.sql/raw?ref=master"; # Project ID: 2 == pg_abris
